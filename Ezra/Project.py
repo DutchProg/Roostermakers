@@ -1,5 +1,12 @@
 import math
 import pandas as pd
+import csv
+
+file = open("Courses.csv")
+csvreader = csv.reader(file)
+courses_dataframe = pd.read_csv(r'Courses.csv')
+print(courses_dataframe)
+
 class Course_activities:
     def __init__(self, number_of_students):
         self.number_of_students = number_of_students
