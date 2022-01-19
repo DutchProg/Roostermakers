@@ -90,6 +90,7 @@ class Week:
         return self.schoolweek
 
 week_data = Week()
+
 for k in week_data.day_list():
     print(k.day)
     for i in k.timeslot_list():
@@ -97,4 +98,39 @@ for k in week_data.day_list():
         for p in i.room_list():
             print(p.number)
 
+class Activity:
+    def __init__(self, name, type, capacity):
+        self.name = name
+        self.type = type
+        self.capacity = capacity
 
+
+class Course:
+    def __init__(self, name, E_students, number_of_lectures, number_of_tutorials, number_of_practica):
+        self.name = name
+        self.E_students = E_students
+        self.number_of_lectures = number_of_lectures
+        self.number_of_tutorials = number_of_tutorials
+        self.number_of_practica = number_of_practica
+        self.absolute_nr_practica = 0
+        self.absolute_nr_tutorial = 0
+
+        def calc_absolute_nr_practica:
+            absolute_nr_practica = 
+
+        def calc_absolute_nr_tutorial:
+
+    def get_name(self):
+        return self.name
+
+    def get_E_students(self):
+        return self.E_students
+
+    def get_number_of_lectures(self):
+        return self.number_of_lectures
+
+    def get_number_of_tutorials(self):
+        return self.number_of_tutorials
+
+    def get_number_of_practica(self):
+        return self.number_of_practica
