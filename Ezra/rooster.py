@@ -22,7 +22,7 @@ course_data_lectures = {}
 course_data_tutorials = {}
 course_data_practica = {}
 
-with open('Courses.csv', newline = '') as f:
+with open('Courses.csv') as f:
     reader = csv.reader(f)
     next(reader)
     for element in list(reader):
@@ -36,9 +36,13 @@ class Room:
         self.number = number
         self.max_capacity = max_capacity
         self.flag = False
-
+        self.scheduled_activity = []
     def get_number(self):
         return self.number
+
+    def add_activity(self, activity):
+        self.scheduled_activity.append(activity)
+        self.flag = True
 
     def get_max_capacity(self):
         return self.max_capacity
@@ -49,8 +53,10 @@ class Room:
         else:
             return False
 
-    def occupied(self, flag):
-        self.flag = flag
+    def occupied(self):
+        return self.flag
+    
+    
 
 class Time:
     def __init__(self, time):
@@ -59,8 +65,8 @@ class Time:
         for key in rooms_data:
             self.room_slots.append(Room(key,rooms_data[key]))
 
-    def get_time(self):
-        return self.time
+    def room_list(self):
+        return self.room_slots
 
 class Day:
     def __init__(self, day):
@@ -69,6 +75,9 @@ class Day:
 
         for i in range(5):
             self.time_slots.append(Time(i))
+    
+    def timeslot_list(self):
+        return self.time_slots 
 
 class Week:
     def __init__(self):
@@ -76,84 +85,16 @@ class Week:
 
         for i in range(5):
             self.schoolweek.append(Day(i))
-            
-    def get_week
+
+    def day_list(self):
+        return self.schoolweek
 
 week_data = Week()
+for k in week_data.day_list():
+    print(k.day)
+    for i in k.timeslot_list():
+        print(i.time)
+        for p in i.room_list():
+            print(p.number)
 
-
-
-class Course:
-    def __init__(self, name, E_students):
-        self.name = name
-        self.E_students = E_students
-
-    def get_name(self):
-        return self.name
-
-    def get_E_students(self):
-        return self.E_students
-
-class Activity:
-    def __init__(self, number_of_lectures, number_of_tutorials, number_of_practica):
-        self.number_of_lectures = number_of_lectures
-        self.number_of_tutorials = number_of_tutorials
-        self.number_of_practica = number_of_practica
-
-    def get_number_of_lectures(self):
-        return self.number_of_lectures
-
-    def get_number_of_tutorials(self):
-        return self.number_of_tutorials
-
-    def get_number_of_practica(self):
-        return self.number_of_practica
-
-class Data:
-    def __init__(self):
-        self.rooms = []
-        self.time_and_day = []
-        self.courses = []
-
-        keys_list = list(rooms_data.keys())
-
-        for i in range(0, len(rooms_data)):
-            self.rooms.append(Room(keys_list[i], rooms_data[keys_list[i]]))
-
-        for i in range(0, len(time_slots)):
-            self.time_and_day.append(Time(time_slots[i][0], time_slots[i][1]))   
-
-        keys_list = list(course_data_E.keys())
-
-        for i in range(len(course_data_E)):
-            self.courses.append(Course(keys_list[i], course_data_E[keys_list[i]]))
-
-    def get_rooms(self):
-        return self.rooms
-
-    def get_time_and_day(self):
-        return self.time_and_day
-
-    def get_courses(self):
-        return self.courses
-
-
-
-
-data = Data()
-
-days = []
-times = []
-courses = []
-
-r = random.sample(range(len(data.get_time_and_day())), 20)
-
-for i in r:
-    days.append(data.get_time_and_day()[i].get_day())
-    times.append(data.get_time_and_day()[i].get_time())
-    courses.append(data.get_courses()[i].get_name())
-
-rooster = pd.DataFrame({'Day': days, 'Time': times, 'Course': courses})
-
-print(rooster)
 
