@@ -1,4 +1,5 @@
 import math
+import csv
 
 class Course:
     def __init__(self, name, lectures, tutorials, t_cap, practicals, p_cap, E_students):
@@ -20,11 +21,31 @@ class Room:
         self.room_number = room_number
         self.max_cap = max_cap
 
+
+
+
+students = []
+
+with open('Students.csv', 'r') as f:
+    reader = csv.reader(f)
+    next(reader)
+    
+    for element in reader:
+
+        subjects = []
+        for item in element[3:]:
+            if len(item) != 0:
+                subjects.append(item)
+
+        students.append({'name': element[1] + ' ' + element[0], 'student_id': int(element[2]), 'courses': subjects})
+
+print(students)
+
 class Student:
     def __init__(self, name, student_id, courses):
-        self.name = name
-        self.student_id = student_id
-        courses = []
-        """ read through csv and append list of all subjects p/ student"""
-        self.courses = courses
+        for student in students:
+            for item in student:
+                self.name = item[0]
+                self.student_id = item[1]
+                self.courses = item[2]
 
