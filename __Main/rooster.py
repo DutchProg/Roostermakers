@@ -46,7 +46,7 @@ for k in week_data.day_list():
         for p in i.room_list():
 
             if p.scheduled_activity[0] != "empty":
-                print(p.scheduled_activity[0].name + " will be in "+ p.number)
+                print(p.scheduled_activity[0].name +" "+ p.scheduled_activity[0].type  + " will be in "+ p.number)
             else:
                 print(p.number +" is empty")
             
