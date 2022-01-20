@@ -3,6 +3,7 @@ import math as math
 import schedule
 import data_loader as load
 import courses
+import visuals
 
 # we fetch our course data from the datafile
 course_data = load.get_data()
@@ -27,12 +28,13 @@ for i in courses_list:
 print(total_activity)
 
 # we then iterate over all the activities and put it in the first availible slot
-# there are 145 slots total for 93 activities random.sample(range(0, 145), 93)
+# there are 145 slots total for 93 activities 
 
-random_list = random.sample(range(0, 145), 93)
+random_list = random.sample(range(0, 145), total_activity)
 counter1 = 0
-counter3= 0 
+counter3 = 0 
 counter2 = 0
+
 for t in activity_shallow:
     spot = random_list[counter1]
     counter1 +=1
@@ -52,6 +54,8 @@ for t in activity_shallow:
 
 
 # This loop prints out found schdule untill 
+
+
 for k in week_data.day_list():
     print(k.day)
     for i in k.timeslot_list():
@@ -62,4 +66,7 @@ for k in week_data.day_list():
                 print(p.scheduled_activity[0].name +" "+ p.scheduled_activity[0].type  + " will be in "+ p.number)
             else:
                 print(p.number +" is empty")
+
+visuals.plotter(week_data)
+
 
