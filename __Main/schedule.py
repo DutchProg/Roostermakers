@@ -12,11 +12,13 @@ times = ["09:00-11:00", "11:00-13:00", "13:00-15:00", "15:00-17:00"]
 time_slots = []
 
 class Room:
-    def __init__(self, number, max_capacity):
+    def __init__(self, number, max_capacity, night):
         self.number = number
         self.max_capacity = max_capacity
         self.flag = False
         self.scheduled_activity = ["empty"]
+        self.night = night
+
     def get_number(self):
         return self.number
 
@@ -36,7 +38,8 @@ class Room:
     def occupied(self):
         return self.flag
     
-    
+    def is_night(self):
+        return self.night
 
 class Time:
     def __init__(self, time, night):
@@ -45,9 +48,9 @@ class Time:
         self.night = night
         if night == False:
             for key in rooms_data:
-                self.room_slots.append(Room(key,rooms_data[key]))
+                self.room_slots.append(Room(key,rooms_data[key],False))
         else:
-            self.room_slots.append(Room("C0.110", 117))
+            self.room_slots.append(Room("C0.110", 117,True))
         
 
     def room_list(self):
