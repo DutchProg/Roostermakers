@@ -21,6 +21,9 @@ class Student:
     def add_activity(self, activity):
         self.activities.append(activity)
 
+
+
+
   
 def get_students():
     students_list = [] 
