@@ -42,6 +42,7 @@ counter3 = 0
 counter2 = 0
 counter23 = 0
 #we loop trough the activities
+random.shuffle(activity_shallow)
 for activity in activity_shallow:
    
     smallest_room_count = 9999
