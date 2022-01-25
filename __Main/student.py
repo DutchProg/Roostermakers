@@ -1,7 +1,5 @@
 from data_loader import get_student_data
 
-
-
 student_data = get_student_data()
 
 class Student:
@@ -20,6 +18,10 @@ class Student:
     def get_courses(self):
         return self.courses
     
+    def add_activity(self, activity):
+        self.activities.append(activity)
+
+  
 def get_students():
     students_list = [] 
 
@@ -32,6 +34,6 @@ def get_students():
             if (student_data[key][i]) != '':
                 courses.append(student_data[key][i])
 
-        students_list.append(Student(key, first_name +" " +last_name, courses))
+        students_list.append(Student(key, first_name + " " +last_name, courses))
 
     return students_list

@@ -9,6 +9,8 @@ import student
 
 student_data = student.get_students()
 
+for i in student_data:
+    print(i.courses)
 # we fetch our course data from the datafile
 course_data = load.get_data()
 
@@ -30,7 +32,7 @@ for i in courses_list:
         activity_shallow.append(k)
         total_activity +=1
 
-print(total_activity)
+
 
 # we then iterate over all the activities and put it in the first availible slot
 # there are 145 slots total for 93 activities 
@@ -40,21 +42,34 @@ counter1 = 0
 counter3 = 0 
 counter2 = 0
 
-for t in activity_shallow:
+#we loop trough the activities
+for activity in activity_shallow:
     spot = random_list[counter1]
     counter1 +=1
     counter2 = 0
-    for k in week_data.day_list():
+    for day in week_data.day_list():
         
-        for i in k.timeslot_list():
+        for timeslot in day.timeslot_list():
             
-            for p in i.room_list():
+            for room in timeslot.room_list():
                 counter2 +=1
-                if p.occupied() == False and t.flag == False and counter2 == spot:
+                if room.occupied() == False and activity.flag == False and counter2 == spot:
                     counter3+=1
-                    t.set_activity()
-                    p.add_activity(t)
-                
+                    activity.set_activity(day.day,timeslot.time,room.number)
+
+                    room.add_activity(activity)
+
+
+# per course checken welke studenten de course volgen en ze indelen in de activities, vervolgens de activities opslaan in de student class.
+
+for i in courses_list:
+    for k in i.get_activity_list():
+        
+        activity_shallow.append(k)
+        total_activity +=1
+
+
+
 # This loop prints out found schdule untill 
 
 
@@ -69,6 +84,17 @@ for k in week_data.day_list():
             #else:
                 #print(p.number +" is empty")
             nothing=0
+
+
+
+def assign_students():
+    for student in student_data:
+        for course in student.courses:
+            nothing = 0
+
+
+
+
 
 visuals.plotter(week_data)
 

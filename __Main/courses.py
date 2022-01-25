@@ -9,9 +9,18 @@ class Activity:
         self.type = type
         self.capacity = capacity
         self.flag = False
+        self.day = ""
+        self.time = ""
+        self.room = ""
 
-    def set_activity(self):
+    def set_activity(self, day, time, room):
         self.flag = True
+        self.day = day
+        self.time = time
+        self.room = room
+
+
+
 
 
 class Course:

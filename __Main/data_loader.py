@@ -29,9 +29,6 @@ def get_student_data():
     
     with open('studentenenvakken.csv',  encoding="utf8", errors="ignore") as f:
         reader = csv.reader(f)
-        
-
-        print(reader)
 
         for row in reader:
 
