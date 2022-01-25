@@ -115,4 +115,12 @@ def get_courses():
     for key in course_data:
         courses_list.append(Course(key, course_data[key][0], course_data[key][1], course_data[key][2], course_data[key][3], course_data[key][4], course_data[key][5]))
 
-    return courses_list
+    activity_data = []
+    for i in courses_list:
+        for k in i.get_activity_list():
+
+            activity_data.append(k)
+
+    return [courses_list, activity_data]
+
+
