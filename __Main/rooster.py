@@ -49,15 +49,23 @@ def single_loop():
                     
                     if room.occupied() == False and activity.flag == False and room.max_capacity >= activity.capacity:
                         if room.max_capacity - activity.capacity < smallest_room_count:
-                            
-                            smallest_room_count = room.max_capacity - activity.capacity
-                            smallest_room = room
-                            day_small = day
-                            timeslot_small = timeslot
+                            if  room.night == False:
+                                smallest_room_count = room.max_capacity - activity.capacity
+                                smallest_room = room
+                                day_small = day
+                                timeslot_small = timeslot
+                            if room.night == True:
+                                
+                                backup_room = room
+                                day_small_backup = day
+                                timeslot_small_backup = timeslot
                     
         smallest_room.add_activity(activity)
-        
-        activity.set_activity(day_small,timeslot_small,smallest_room)
+        if smallest_room_count != 9999:
+            activity.set_activity(day_small,timeslot_small,smallest_room)
+        else:
+            print("hi")
+            activity.set_activity(day_small_backup,timeslot_small_backup,backup_room)
 
 
     # per course checken welke studenten de course volgen en ze indelen in de activities, vervolgens de activities opslaan in de student class.
