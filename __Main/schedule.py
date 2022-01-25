@@ -40,11 +40,19 @@ class Room:
     def is_night(self):
         return self.night
 
+    def get_malus(self):
+        if self.night == True and self.scheduled_activity != ["empty"]:
+            return 5
+        else:
+            return 0 
+
 class Time:
     def __init__(self, time, night):
         self.time = time
         self.room_slots = []
         self.night = night
+        
+
         if night == False:
             for key in rooms_data:
                 self.room_slots.append(Room(key,rooms_data[key],False))
