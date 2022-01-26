@@ -7,6 +7,8 @@ import visuals
 import student
 import string
 import malus_calc
+import pickle
+import sys
 
 def single_loop():
     student_data = student.get_students()
@@ -81,14 +83,40 @@ def single_loop():
 
 malus =  9999 
 
-for i in range(5000):
+for i in range(50000):
     loop = single_loop()
     solution = loop[1]
     malus_temp = loop[0] 
+
     if malus_temp < malus:
         malus = malus_temp
         solution_short = solution
 
-
+sys.setrecursionlimit(3000)
 print(malus)
+config_dictionary = {"solution" : solution_short[3], "maluspunten" : malus}
+
+with open(r"config.dictionary", "rb") as input_file:
+    e = pickle.load(input_file)
+    current_lowest = e["maluspunten"]
+
+
+
+
+with open('config.dictionary', 'wb') as config_dictionary_file:
+ 
+  # Step 3
+    if config_dictionary["maluspunten"] < current_lowest: 
+        pickle.dump(config_dictionary, config_dictionary_file)
+    pickle.dump(e, config_dictionary_file)
+
+
 visuals.plotter(solution_short[3])
+
+
+
+with open("config.dictionary", "rb") as input_file:
+    e = pickle.load(input_file)
+    print(e)
+    print(e["solution"])
+    print(e["maluspunten"])
