@@ -27,6 +27,12 @@ class Activity:
         else:
             return False
 
+    def remove_student(self,student):
+
+        self.students = [item for item in self.students if student.name != item.name]
+        return True
+
+
 
 
 
@@ -52,8 +58,8 @@ class Course:
             self.absolute_nr_tutorial=0
         self.total_number_of_activities = number_of_lectures+ self.absolute_nr_practica  + self.absolute_nr_tutorial
         
-
-        self.activity_list.append(Activity(name, "lecture", E_students ))
+        for i in range(int(self.number_of_lectures)):
+            self.activity_list.append(Activity(name, "lecture", E_students ))
 
         for i in range(int(self.absolute_nr_practica)):
             self.activity_list.append(Activity(name, "practica",capacity_practica ))
@@ -90,25 +96,26 @@ class Course:
 
         for activity in self.activity_list:
 
-            if activity.type == "lecture" and count_lecture< self.number_of_lectures:
+            if activity.type == "lecture" and count_lecture< self.number_of_lectures and student not in activity.students:
                 if activity.add_student(student) == True:
                     student.add_activity(activity)
                     count_lecture += 1
-            if activity.type == "practica" and count_practical < self.number_of_practica:
+            if activity.type == "practica" and count_practical < self.number_of_practica and student not in activity.students:
                 if activity.add_student(student) == True:
                     student.add_activity(activity)
                     count_practical +=1 
-            if activity.type == "tutorial" and count_tutorial < self.number_of_tutorials:
+            if activity.type == "tutorial" and count_tutorial < self.number_of_tutorials and student not in activity.students:
                 if activity.add_student(student) == True:
                     student.add_activity(activity)
                     count_tutorial +=1 
-
+    
         
 
 
         #Naam - 0#Hoorcolleges,#Werkcolleges,Max. stud.,#Practica,Max. stud.,E(studenten)
         # we have a dict with name of course as key, and number of students lecture_count, tutorial_count, tut_max and practica_count and prac,maxin a list
         #name, E_students, number_of_lectures, number_of_tutorials, number_of_practica, capacity_tutorial, capacity_practica)
+
 def get_courses():
     courses_list = [] 
 

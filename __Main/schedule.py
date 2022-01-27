@@ -25,6 +25,10 @@ class Room:
         self.scheduled_activity[0] = activity
         self.flag = True
 
+    def remove_activity(self):
+        self.scheduled_activity[0] =  "empty"
+        self.flag = False
+
     def get_max_capacity(self):
         return self.max_capacity
 

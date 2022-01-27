@@ -1,6 +1,3 @@
-
-
-
 def malus_calc(student_data,activity_list):
     malus_student = 0 
 
@@ -13,4 +10,5 @@ def malus_calc(student_data,activity_list):
         if activity.time.night == True:
             malus_activity += 5
     malus_total = malus_student + malus_activity
+    
     return malus_total

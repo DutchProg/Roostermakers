@@ -23,6 +23,9 @@ class Student:
     def add_activity(self, activity):
         self.activities.append(activity)
 
+    def remove_activity(self, activity):
+        self.activities = [item for item in self.activities if (activity.name != item.name and activity.type != item.type)]
+
     def malus_calc(self):
         activity_times = []
         activity_dict = {"Monday":[],"Tuesday":[],"Wednesday":[],"Thursday":[],"Friday":[]}
