@@ -35,7 +35,6 @@ def single_loop():
     
         smallest_room_count = 9999
         
-        
         for day in sorted(week_data.day_list(),key=lambda _: random.random()):
             
             for timeslot in sorted(day.timeslot_list(),key=lambda _: random.random()):
@@ -43,11 +42,11 @@ def single_loop():
                 for room in sorted(timeslot.room_list(),key=lambda _: random.random()):
                     
                     if room.occupied() == False and activity.flag == False and room.max_capacity >= activity.capacity:
-
+                      
                         if room.max_capacity - activity.capacity < smallest_room_count:
-
+                            
                             if  room.night == False:
-
+                                
                                 smallest_room_count = room.max_capacity - activity.capacity
                                 smallest_room = room
                                 day_small = day
@@ -59,6 +58,7 @@ def single_loop():
                                 day_small_backup = day
                                 timeslot_small_backup = timeslot
                     
+
         smallest_room.add_activity(activity)
 
         if smallest_room_count != 9999:
@@ -66,6 +66,7 @@ def single_loop():
         else:
             
             activity.set_activity(day_small_backup,timeslot_small_backup,backup_room)
+
 
     # per course checken welke studenten de course volgen en ze indelen in de activities, vervolgens de activities opslaan in de student class.
     for student_individual in student_data:
@@ -77,6 +78,42 @@ def single_loop():
                 course.add_student(student_individual)
 
     return [student_data,courses_list,activity_list,week_data]
+
+
+
+
+def test_activity_student_consistency(solution, error):
+    activity_list = solution[2]
+    student_data = solution[0]
+    
+    for student in student_data:
+
+        for activity in student.activities:
+            if student not in activity.students:
+                print("bug!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+                print(student,student.activities)
+                print(activity, activity.students)
+             
+
+                print(error)
+                sys.exit()
+
+    for activity in activity_list:
+        for student in activity.students:
+            if activity not in student.activities:
+
+                print(student,student.activities)
+                print(activity, activity.students)
+                print("Bug2!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+                print(student)
+                print(activity)
+                print(error)
+                sys.exit()
+
+        
+
+
+
 
 def course_switch_emptyslot(iterations_of_activitylist, solution ):
 
@@ -196,58 +233,110 @@ def student_switch(iterations_of_activitylist, solution):
         
         for student in student_data:
             maluscount = malus_calc.malus_calc(student_data,activity_list)
-        
+
+            changed = False
             for activity in student.activities:
                 
+                # print(student)
+                # print("!!!!!!!!!!!!!")
+                # print(activity.students)
+
                 for activity_new in activity_list:
-
-                    if activity.name == activity_new.name and activity.type == activity_new.type and student not in activity_new.students:
-                        
-                        if len(activity_new.students) != 0:
-                            random_student = random.choice(activity_new.students)
+                    if changed ==False:
+                        if activity.name == activity_new.name and activity.type == activity_new.type and student not in activity_new.students:
                             
-                        
-                            activity.remove_student(student)
-                            student.remove_activity(activity)
-                            
-                            
-                            activity_new.remove_student(random_student)
-                            random_student.remove_activity(activity_new)
-
-                            activity.add_student(random_student)
-                            student.add_activity(activity_new)
-
-                            activity_new.add_student(student)                   
-                            random_student.add_activity(activity)
-                            
-                    
-
-                            malus_list.append(maluscount)  
-                            changed_student += 1
-
-                            print(malus_calc.malus_calc(student_data,activity_list), maluscount)
-                            
-                            if malus_calc.malus_calc(student_data,activity_list) > maluscount:
+                            if len(activity_new.students) != 0:
+                                test_activity_student_consistency(solution,"check1")
                                 
-                                changed_student -= 1
-                                malus_list.pop()
+                                random_student = random.choice(activity_new.students)
+                                # print(student.name)
+                                # print(student.activities)
+                                # print("============================================")
+                                # print(random_student.name)
+                                # print(random_student.activities)
+                                print(student, activity)
+                                print(random_student, activity_new)
+                                
+                                print("before swap")
+                                        
+                                print(student.activities)
+                                print(activity.students)
+                                print("============================================")
+                                print(random_student.activities)
+                                print(activity_new.students)
+                                print("...........")
+                                # for i in activity.students:
+                                #     print(i.name)
 
-                                activity.remove_student(random_student)
-                                activity_new.remove_student(student)
-                                student.remove_activity(activity_new)
-                                random_student.remove_activity(activity)
 
+                                activity.remove_student(student)
+                                student.remove_activity(activity)
+                                
+                                
+                                activity_new.remove_student(random_student)
+                                random_student.remove_activity(activity_new)
 
-                                activity.add_student(student)
-                                activity_new.add_student(random_student)
-                                student.add_activity(activity)
-                                random_student.add_activity(activity_new)
-                        
+                                activity.add_student(random_student)
+                                student.add_activity(activity_new)
+
+                                activity_new.add_student(student)                   
+                                random_student.add_activity(activity)
+                                changed = True
+
+                                print("before reverse")
+                                        
+                                print(student.activities)
+                                print(activity.students)
+                                print("============================================")
+                                print(random_student.activities)
+                                print(activity_new.students)
+                                print("...........")
+                                malus_list.append(maluscount)  
+                                changed_student += 1
+
+                                print("before",malus_calc.malus_calc(student_data,activity_list), maluscount)
+                                
+
+                                
+                                if malus_calc.malus_calc(student_data,activity_list) > maluscount:
+                                    test_activity_student_consistency(solution,"check1.5")
+                                    changed_student -= 1
+                                    malus_list.pop()
+
+                                    activity.remove_student(random_student)
+                                    activity_new.remove_student(student)
+                                    student.remove_activity(activity_new)
+                                    random_student.remove_activity(activity)
+
+                                    activity.add_student(student)
+                                    activity_new.add_student(random_student)
+                                    student.add_activity(activity)
+                                    random_student.add_activity(activity_new)
+                                    changed = False
+                                    print("after", malus_calc.malus_calc(student_data,activity_list), maluscount)
+                                    if malus_calc.malus_calc(student_data,activity_list)!= maluscount:
+                                        print("after reverse")
+                                        print(student)
+                                        print(student.activities)
+                                        print(activity.students)
+                                        print("============================================")
+                                        print(random_student)
+                                        print(random_student.activities)
+                                        print(activity_new.students)
+                                        print("...........")
+                                        test_activity_student_consistency(solution,"check2")
+                                        sys.exit()
+                                        
+                                        
+                                        
+                                test_activity_student_consistency(solution,"check3")
+                                    
 
                             
 
     
     return changed_student,malus_list,student_data,activity_list,week_data, course_list
+
 
 solution = single_loop()
 
@@ -260,43 +349,52 @@ for day in solution[3].schoolweek:
         for room in time.room_slots:
             for index, item in enumerate(room.scheduled_activity):
                 if item != "empty":
+
                     if len(item.students) == 0:
+
                         room.scheduled_activity[index] = "empty"
                         room.flag = False
-                
+
+
+
                         
 # [student_data,courses_list,activity_list,week_data]
 
 # print("hi")
 
-for student_1 in solution[0]:
-    print(student_1.name,)
-    for i in student_1.activities:
-        print(i.name,i.type)
+# for student_1 in solution[0]:
+#     print(student_1.name,)
+#     for i in student_1.activities:
+#         print(i.name,i.type)
 
-for activity in solution[2]:
-    print("hi")
-    print(activity.name, activity.type)
-    print(activity.capacity, len(activity.students))
+
+
+# for activity in solution[2]:
+#     print("hi")
+#     print(activity.name, activity.type)
+#     print(activity.capacity, len(activity.students))
     
 
-changed_activity,malus_list,student_data,activity_list,week_data,course_list = course_switch_emptyslot(1,solution)
-changed_activity,malus_list,student_data,activity_list,week_data,course_list = course_switch(1,solution)
+#changed_activity,malus_list,student_data,activity_list,week_data,course_list = course_switch_emptyslot(1,solution)
+#changed_activity,malus_list,student_data,activity_list,week_data,course_list = course_switch(1,solution)
+#changed_student,malus_list,student_data,activity_list,week_data,course_list = student_switch(1,solution)
+#changed_activity,malus_list,student_data,activity_list,week_data,course_list = course_switch_emptyslot(1,solution)
+#changed_activity,malus_list,student_data,activity_list,week_data,course_list = course_switch(1,solution)
 changed_student,malus_list,student_data,activity_list,week_data,course_list = student_switch(1,solution)
-changed_activity,malus_list,student_data,activity_list,week_data,course_list = course_switch_emptyslot(1,solution)
-changed_activity,malus_list,student_data,activity_list,week_data,course_list = course_switch(1,solution)
-changed_student,malus_list,student_data,activity_list,week_data,course_list = student_switch(1,solution)
 
 
-for student_1 in solution[0]:
-    print(student_1.name,)
-    for i in student_1.activities:
-        print(i.name,i.type)
 
-for activity in solution[2]:
-    print("hi")
-    print(activity.name, activity.type)
-    print(activity.capacity, len(activity.students))
+
+
+# for student_1 in solution[0]:
+#     print(student_1.name,)
+#     for i in student_1.activities:
+#         print(i.name,i.type)
+
+# for activity in solution[2]:
+#     print("hi")
+#     print(activity.name, activity.type)
+#     print(activity.capacity, len(activity.students))
     
 
 

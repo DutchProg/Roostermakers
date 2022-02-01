@@ -14,7 +14,12 @@ class Activity:
         self.time = ""
         self.room = ""
         self.students = []
-        self.id = id
+        self.id = name+"-" + str(id)
+
+    def __repr__(self):
+        rep = f"{self.id} {self.type}"
+        return rep
+
 
     def set_activity(self, day, time, room):
         self.flag = True
@@ -30,8 +35,10 @@ class Activity:
             return False
 
     def remove_student(self,student):
+        print(student,self.students)
+        
+        self.students.remove(student)
 
-        self.students = [item for item in self.students if student.name != item.name]
         return True
 
 
@@ -61,7 +68,7 @@ class Course:
         self.total_number_of_activities = number_of_lectures+ self.absolute_nr_practica  + self.absolute_nr_tutorial
         
         for i in range(int(self.number_of_lectures)):
-            self.activity_list.append(Activity(name, "lecture", 600, 1 ))
+            self.activity_list.append(Activity(name, "lecture", E_students, 1 ))
 
         for i in range(int(self.absolute_nr_practica)):
             self.activity_list.append(Activity(name, "practica", capacity_practica, i ))

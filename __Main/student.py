@@ -11,6 +11,10 @@ class Student:
         self.courses = courses
         self.activities = []
 
+    def __repr__(self):
+        rep = self.name
+        return rep
+
     def get_name(self):
         return self.name
 
@@ -24,6 +28,7 @@ class Student:
         self.activities.append(activity)
 
     def remove_activity(self, activity):
+        
         for i, item in enumerate(self.activities):
             if (item.id == activity.id and activity.type == item.type and item.name == activity.name):
                 del self.activities[i]
@@ -33,9 +38,11 @@ class Student:
     def malus_calc(self):
         activity_times = []
         activity_dict = {"Monday":[],"Tuesday":[],"Wednesday":[],"Thursday":[],"Friday":[]}
+        
         for activity in self.activities:
             index = 0
             activity_times.append((activity.day.day,activity.time.time))
+
             if activity.time.time == "09:00-11:00":
                 index = 1
             if activity.time.time == "11:00-13:00":
@@ -49,7 +56,7 @@ class Student:
             activity_dict[activity.day.day].append(index)
 
         malus_points_gap = 0
-
+        
         for key in activity_dict:
             index_previous = None
 
@@ -67,7 +74,7 @@ class Student:
                     
                     malus_points_gap += 3
                 index_previous = index
-
+        
 
 
         malus_points_double = len(activity_times) - len(set(activity_times))
