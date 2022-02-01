@@ -35,7 +35,7 @@ class Activity:
             return False
 
     def remove_student(self,student):
-        print(student,self.students)
+        
         
         self.students.remove(student)
 

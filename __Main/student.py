@@ -1,5 +1,5 @@
 from data_loader import get_student_data
-
+import listsort as lst
 
 
 student_data = get_student_data()
@@ -38,49 +38,50 @@ class Student:
     def malus_calc(self):
         activity_times = []
         activity_dict = {"Monday":[],"Tuesday":[],"Wednesday":[],"Thursday":[],"Friday":[]}
-        
+        print(self.name)
         for activity in self.activities:
             index = 0
             activity_times.append((activity.day.day,activity.time.time))
-
+            
             if activity.time.time == "09:00-11:00":
                 index = 1
+            
             if activity.time.time == "11:00-13:00":
                 index = 2
+           
             if activity.time.time == "13:00-15:00":
                 index = 3
+            
             if activity.time.time == "15:00-17:00":
                 index = 4
+            
             if activity.time.time == "17:00-19:00":
                 index = 5   
             activity_dict[activity.day.day].append(index)
-
+        print(activity_dict)
+          
         malus_points_gap = 0
-        
+        more_then2_gaps = False
         for key in activity_dict:
             index_previous = None
 
             # de loop gaat er vanuit dat er geen blokken zijn met meer dan 2 tussenuren, dat mag nml niet.
-            for index in activity_dict[key]:
-                if index_previous == None:
-                    index_previous = index - 1
+            consec = lst.longestConsecutive(activity_dict[key])
+            if consec == 1:
+                malus_points_gap += 1
 
-                if (index - index_previous) == 2:
-                    
-
-                    malus_points_gap += 1
-                    
-                elif (index - index_previous) == 3:
-                    
-                    malus_points_gap += 3
-                index_previous = index
+            if consec == 2:
+                malus_points_gap += 3
         
+            if consec > 2:
+                more_then2_gaps = True
 
 
+    	
         malus_points_double = len(activity_times) - len(set(activity_times))
         malus_points_total = malus_points_gap + malus_points_double
-
-        return malus_points_total   
+        print(malus_points_double, malus_points_gap)
+        return malus_points_total
 
         
             

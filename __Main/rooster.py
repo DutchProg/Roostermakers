@@ -79,9 +79,6 @@ def single_loop():
 
     return [student_data,courses_list,activity_list,week_data]
 
-
-
-
 def test_activity_student_consistency(solution, error):
     activity_list = solution[2]
     student_data = solution[0]
@@ -109,11 +106,6 @@ def test_activity_student_consistency(solution, error):
                 print(activity)
                 print(error)
                 sys.exit()
-
-        
-
-
-
 
 def course_switch_emptyslot(iterations_of_activitylist, solution ):
 
@@ -237,10 +229,6 @@ def student_switch(iterations_of_activitylist, solution):
             changed = False
             for activity in student.activities:
                 
-                # print(student)
-                # print("!!!!!!!!!!!!!")
-                # print(activity.students)
-
                 for activity_new in activity_list:
                     if changed ==False:
                         if activity.name == activity_new.name and activity.type == activity_new.type and student not in activity_new.students:
@@ -249,24 +237,21 @@ def student_switch(iterations_of_activitylist, solution):
                                 test_activity_student_consistency(solution,"check1")
                                 
                                 random_student = random.choice(activity_new.students)
-                                # print(student.name)
-                                # print(student.activities)
-                                # print("============================================")
-                                # print(random_student.name)
-                                # print(random_student.activities)
-                                print(student, activity)
-                                print(random_student, activity_new)
+                                
+                                
+                                
+                                
                                 
                                 print("before swap")
-                                        
+                                print(student.name)        
                                 print(student.activities)
                                 print(activity.students)
                                 print("============================================")
+                                print(random_student.name)
                                 print(random_student.activities)
                                 print(activity_new.students)
                                 print("...........")
-                                # for i in activity.students:
-                                #     print(i.name)
+                                
 
 
                                 activity.remove_student(student)
@@ -291,6 +276,7 @@ def student_switch(iterations_of_activitylist, solution):
                                 print(random_student.activities)
                                 print(activity_new.students)
                                 print("...........")
+
                                 malus_list.append(maluscount)  
                                 changed_student += 1
 
@@ -312,7 +298,9 @@ def student_switch(iterations_of_activitylist, solution):
                                     activity_new.add_student(random_student)
                                     student.add_activity(activity)
                                     random_student.add_activity(activity_new)
+
                                     changed = False
+                                    
                                     print("after", malus_calc.malus_calc(student_data,activity_list), maluscount)
                                     if malus_calc.malus_calc(student_data,activity_list)!= maluscount:
                                         print("after reverse")
@@ -326,6 +314,7 @@ def student_switch(iterations_of_activitylist, solution):
                                         print("...........")
                                         test_activity_student_consistency(solution,"check2")
                                         sys.exit()
+                                        
                                         
                                         
                                         
