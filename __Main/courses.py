@@ -5,7 +5,7 @@ import student
 course_data = data_loader.get_data()
 
 class Activity:
-    def __init__(self, name, type, capacity):
+    def __init__(self, name, type, capacity, id):
         self.name = name
         self.type = type
         self.capacity = capacity
@@ -14,6 +14,7 @@ class Activity:
         self.time = ""
         self.room = ""
         self.students = []
+        self.id = id
 
     def set_activity(self, day, time, room):
         self.flag = True
@@ -60,13 +61,13 @@ class Course:
         self.total_number_of_activities = number_of_lectures+ self.absolute_nr_practica  + self.absolute_nr_tutorial
         
         for i in range(int(self.number_of_lectures)):
-            self.activity_list.append(Activity(name, "lecture", E_students ))
+            self.activity_list.append(Activity(name, "lecture", 600, 1 ))
 
         for i in range(int(self.absolute_nr_practica)):
-            self.activity_list.append(Activity(name, "practica",capacity_practica ))
+            self.activity_list.append(Activity(name, "practica", capacity_practica, i ))
 
         for i in range(int(self.absolute_nr_tutorial)):
-            self.activity_list.append(Activity(name, "tutorial",capacity_tutorial ))
+            self.activity_list.append(Activity(name, "tutorial",capacity_tutorial,i ))
 
     def get_name(self):
         return self.name
@@ -120,14 +121,16 @@ class Course:
         # we have a dict with name of course as key, and number of students lecture_count, tutorial_count, tut_max and practica_count and prac,maxin a list
         #name, E_students, number_of_lectures, number_of_tutorials, number_of_practica, capacity_tutorial, capacity_practica)
 student_data = student.get_students()
+
 def get_courses():
     courses_list = [] 
-    student_count = 0
     for key in course_data:
+        student_count = 0
         for student in student_data:
             for course in student.courses:
                 if course == key:
                     student_count +=1
+
         courses_list.append(Course(key, student_count, course_data[key][1], course_data[key][2], course_data[key][3], course_data[key][4], course_data[key][5]))
 
     activity_data = []

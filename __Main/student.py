@@ -24,7 +24,11 @@ class Student:
         self.activities.append(activity)
 
     def remove_activity(self, activity):
-        self.activities = [item for item in self.activities if (activity.name != item.name and activity.type != item.type)]
+        for i, item in enumerate(self.activities):
+            if (item.id == activity.id and activity.type == item.type and item.name == activity.name):
+                del self.activities[i]
+            
+        
 
     def malus_calc(self):
         activity_times = []

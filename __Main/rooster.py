@@ -64,7 +64,7 @@ def single_loop():
         if smallest_room_count != 9999:
             activity.set_activity(day_small,timeslot_small,smallest_room)
         else:
-            print("hi")
+            
             activity.set_activity(day_small_backup,timeslot_small_backup,backup_room)
 
     # per course checken welke studenten de course volgen en ze indelen in de activities, vervolgens de activities opslaan in de student class.
@@ -267,16 +267,16 @@ for day in solution[3].schoolweek:
                         
 # [student_data,courses_list,activity_list,week_data]
 
-print("hi")
+# print("hi")
 
 for student_1 in solution[0]:
-    print(student_1.name)
+    print(student_1.name,)
     for i in student_1.activities:
         print(i.name,i.type)
 
 for activity in solution[2]:
     print("hi")
-    print(activity.name)
+    print(activity.name, activity.type)
     print(activity.capacity, len(activity.students))
     
 
@@ -286,6 +286,19 @@ changed_student,malus_list,student_data,activity_list,week_data,course_list = st
 changed_activity,malus_list,student_data,activity_list,week_data,course_list = course_switch_emptyslot(1,solution)
 changed_activity,malus_list,student_data,activity_list,week_data,course_list = course_switch(1,solution)
 changed_student,malus_list,student_data,activity_list,week_data,course_list = student_switch(1,solution)
+
+
+for student_1 in solution[0]:
+    print(student_1.name,)
+    for i in student_1.activities:
+        print(i.name,i.type)
+
+for activity in solution[2]:
+    print("hi")
+    print(activity.name, activity.type)
+    print(activity.capacity, len(activity.students))
+    
+
 
 print("final malus count: {}".format(malus_calc.malus_calc(student_data,activity_list)))
 visuals.plotter(week_data)
