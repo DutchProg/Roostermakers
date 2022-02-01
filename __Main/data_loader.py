@@ -27,7 +27,7 @@ def get_data():
 def get_student_data():
     student_data = {}
     
-    with open('studentenenvakken.csv',  encoding="utf8", errors="ignore") as f:
+    with open('studentenenvakken.csv',  encoding='latin1') as f:
         reader = csv.reader(f)
 
         for row in reader:

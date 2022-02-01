@@ -1,5 +1,6 @@
 import math
 import data_loader
+import student 
 
 course_data = data_loader.get_data()
 
@@ -95,16 +96,19 @@ class Course:
         count_lecture = 0
 
         for activity in self.activity_list:
-
-            if activity.type == "lecture" and count_lecture< self.number_of_lectures and student not in activity.students:
+            present = False
+            for student_2 in activity.students:
+                if student.name == student_2.name:
+                    present = True
+            if activity.type == "lecture" and count_lecture< self.number_of_lectures and present == False:
                 if activity.add_student(student) == True:
                     student.add_activity(activity)
                     count_lecture += 1
-            if activity.type == "practica" and count_practical < self.number_of_practica and student not in activity.students:
+            if activity.type == "practica" and count_practical < self.number_of_practica and  present == False:
                 if activity.add_student(student) == True:
                     student.add_activity(activity)
                     count_practical +=1 
-            if activity.type == "tutorial" and count_tutorial < self.number_of_tutorials and student not in activity.students:
+            if activity.type == "tutorial" and count_tutorial < self.number_of_tutorials and  present == False:
                 if activity.add_student(student) == True:
                     student.add_activity(activity)
                     count_tutorial +=1 
@@ -115,12 +119,16 @@ class Course:
         #Naam - 0#Hoorcolleges,#Werkcolleges,Max. stud.,#Practica,Max. stud.,E(studenten)
         # we have a dict with name of course as key, and number of students lecture_count, tutorial_count, tut_max and practica_count and prac,maxin a list
         #name, E_students, number_of_lectures, number_of_tutorials, number_of_practica, capacity_tutorial, capacity_practica)
-
+student_data = student.get_students()
 def get_courses():
     courses_list = [] 
-
+    student_count = 0
     for key in course_data:
-        courses_list.append(Course(key, course_data[key][0], course_data[key][1], course_data[key][2], course_data[key][3], course_data[key][4], course_data[key][5]))
+        for student in student_data:
+            for course in student.courses:
+                if course == key:
+                    student_count +=1
+        courses_list.append(Course(key, student_count, course_data[key][1], course_data[key][2], course_data[key][3], course_data[key][4], course_data[key][5]))
 
     activity_data = []
     for i in courses_list:
