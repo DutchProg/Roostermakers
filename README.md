@@ -1,5 +1,5 @@
 # Roostermakers
-Programmeer Theorie Repository
+Programmeer Theorie Repository - Sanae Azzouzi, Jason Clark, Ezra de Cleen
 
 ### Lectures & Lesroosters 
 
@@ -11,18 +11,26 @@ randomisation
 
 multiple hill climber algorithms 
 
-### Results
+- compare baseline with the initial algorithm and final algorithm
+    - keep in mind the bias we apply
 
+#### baseline
+
+![baseline results](images/baseline_results.jpeg)
+
+#### hill climber
+
+![hill climber results](images/hillclimber_results.jpeg)
+
+
+- theorertical optimum?? 
+    - is it possible?
+
+### Results
 
 - time is not important factor, as long as it doesnt take too long eg 6 months
 - still keep in mind the time -- which hardware gave the time 
 - keep in mind how many moves the hill climber did
-
-- compare baseline with the initial algorithm and final algorithm
-    - keep in mind the bias we apply
-
-- theorertical optimum?? 
-    - is it possible?
 
 - how to get these specific results from our project using the o
 python3 rooster.py
