@@ -16,15 +16,11 @@ multiple hill climber algorithms
 
 #### baseline
 
-![baseline results]<img src="images/baseline_results.jpeg " width="400">
-
-(images/baseline_results.jpeg | width=100)
-<!-- <img src="baseline_results.jpeg" alt="drawing" width="200"/> -->
-
+<img src="images/baseline_results.jpeg " width="500">
 
 #### hill climber
 
-![hill climber results](images/hillclimber_results.jpeg)
+<img src="images/hillclimber_results.jpeg " width="500">
 
 
 - theorertical optimum?? 
