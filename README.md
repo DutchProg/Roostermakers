@@ -16,8 +16,10 @@ multiple hill climber algorithms
 
 #### baseline
 
-![baseline results](images/baseline_results.jpeg)
-<img src="baseline_results.jpeg" alt="drawing" width="200"/>
+![baseline results]<img src="images/baseline_results.jpeg " width="400">
+
+(images/baseline_results.jpeg | width=100)
+<!-- <img src="baseline_results.jpeg" alt="drawing" width="200"/> -->
 
 
 #### hill climber
