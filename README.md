@@ -16,11 +16,13 @@ multiple hill climber algorithms
 
 #### baseline
 
-![baseline results](images/baseline_results.jpeg =300x)
+![baseline results](images/baseline_results.jpeg)
+<img src="baseline_results.jpeg" alt="drawing" width="200"/>
+
 
 #### hill climber
 
-![hill climber results](images/hillclimber_results.jpeg =300x)
+![hill climber results](images/hillclimber_results.jpeg)
 
 
 - theorertical optimum?? 
