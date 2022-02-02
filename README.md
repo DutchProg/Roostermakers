@@ -7,7 +7,7 @@ Programmeer Theorie - Lectures & Lesroosters
 ### Building timetables with digital means 
 - - -
 
-<img src="images/roostering.jpg " width="500">
+<img src="images/roostering.jpg " width="200">
 
 The creation of a timetable for universities and schools is a complicated and difficult problem when it comes to using computer agorithms. To begin with timetables don't have a clear distinction of what can be considered appectable or not acceptible. Partially this is due to all the criteria and elements that are necessary to consider, making it a complete multi-dimensional problem. It's also something that is completely individual to the insitution for which algorithm is being designed (Willemen, 2002). 
 
