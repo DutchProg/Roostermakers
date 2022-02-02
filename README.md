@@ -54,7 +54,7 @@ The current best solution we calculated was ***INSERT NEW SCORE*** minus points.
 <p align="center">
     <img src="images/baseline_results.jpeg " width="500">
     <br>
-    figure 1 results from the randomisation process
+    figure 1: results from the randomisation process
 </p>
 
 This randomisation process however is done with constraints: it takes into account the room capacity and ensure that each activity is put in the room with the smallest capacity. On top of this, we aimed to use the night slots as little as possible. However, it may be in later stages that we find combinations where the night slot offers less minus points than without using it. 
@@ -73,7 +73,7 @@ After ***N*** amount of changes our total points equated to ***MALUSPUNTEN***
 <p align="center">
     <img src="images/hillclimber_results.jpeg " width="500">
     <br>
-    figure 2 results from the hill climber algorithm
+    figure 2: results from the hill climber algorithm
 </p>
 
 
@@ -87,7 +87,7 @@ Considering all the academic papers surrounding this topic concerning the diffic
 
 #### Conclusion
 
-With the results, we can be quite certain in saying that 
+With the results, we can be quite certain in saying that we...
 
 reflection on our process
  - backtracking 
@@ -96,6 +96,14 @@ reflection on our process
 
 ### Results
 - - -
+
+#### Hardware
+
+- MENTION THE HARDWARE UPON WHICH THESE CALCULATIONS WERE DONE eg affects time / computing power
+
+#### Commands & instructions for navigating this project and gaining results
+
+python3 rooster.py
 
 #### Baseline
 
@@ -121,18 +129,19 @@ moves:
 <br/>
 points:
 
+#### Visualisation
+
+produces a visual timetable with the timetable which allows for the least amount of maluspunten 
+
+
 ***REMOVE THIS PART AFTER FINISH***
+
 keep in mind our intepretation of the results what we are keeping in mind
 - time is not important factor, as long as it doesnt take too long eg 6 months
 - still keep in mind the time -- which hardware gave the time 
 - keep in mind how many moves the hill climber did
 
-- MENTION THE HARDWARE UPON WHICH THESE CALCULATIONS WERE DONE eg affects time / computing power
 
-produces a visual timetable with the timetable which allows for the least amount of maluspunten 
-
-- how to get these specific results from our project using the 
-python3 rooster.py
 
 
 ## References
