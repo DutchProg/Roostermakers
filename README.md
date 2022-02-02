@@ -55,7 +55,8 @@ The current best solution we calculated was ***INSERT NEW SCORE*** minus points.
 
 ***REPLACE IMAGE WITH NEW ALGORITHM RESULTS***
 <img src="images/baseline_results.jpeg " width="500">
-figure 1: results from the randomisation process
+<br>
+*figure 1: results from the randomisation process*
 
 This randomisation process however is done with constraints, to ensure that this timetable is valid and that it is something we can work with. Therefore, it takes into account the room capacity and ensure that the activity is put in the room with the smallest capacity. On top of this, we aim to use the night slots as little as possible, due to the extra points they give. However, it may be in later stages that we find combinations where the night slot offers less minus points than without using it. We also don’t take into account that for our solution we are also able to make extra workgroups or tutorials even if there are only a few students in there, as this may too give less minus points. 
 
@@ -69,7 +70,8 @@ In the beginning, small changes made massive changes to the number of minus poin
 
 ***REPLACE IMAGE WITH NEW ALGORITHM RESULTS***
 <img src="images/hillclimber_results.jpeg " width="500">
-figure 2: results from the hill climber algorithm
+<br>
+*figure 2: results from the hill climber algorithm*
 
 To further improve the algorithm, since swapping activities with empty slots offers no more improvements, it would make sense to take it one step at a time to not make it too complicated. The next logical step would be to begin swapping the activities with other activities, and to compare the minus points based on these changes in a similar way. Further we can also look at doing the same with students, by then taking into account which specific group they are being placed in, and then moving them between the different activity groups, or maybe event creating another one if it acts as an improvement. 
 
