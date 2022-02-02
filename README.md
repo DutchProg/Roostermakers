@@ -7,11 +7,12 @@ Programmeer Theorie - Lectures & Lesroosters
 ### Building timetables with digital means 
 - - -
 
+The creation of a timetable for universities and schools is a complicated and difficult problem when it comes to using computer agorithms. To begin with timetables don't have a clear distinction of what can be considered appectable or not acceptible. Partially this is due to all the criteria and elements that are necessary to consider, making it a complete multi-dimensional problem. It's also something that is completely individual to the insitution for which algorithm is being designed (Willemen, 2002).
+
 <p align="center">
     <img src="images/roostering.jpg " width="200">
 </p>
 
-The creation of a timetable for universities and schools is a complicated and difficult problem when it comes to using computer agorithms. To begin with timetables don't have a clear distinction of what can be considered appectable or not acceptible. Partially this is due to all the criteria and elements that are necessary to consider, making it a complete multi-dimensional problem. It's also something that is completely individual to the insitution for which algorithm is being designed (Willemen, 2002).
 
 Often the algorithm only being used as the starting point for the creation of the timetable, where fine tuning is done by hand. Timetable construction, especially for schools is a never ending problem, in which an optimal solution will never be found, every semester the amount of students, classes offered, and teachers available changes. But this is exactly what makes it such an interesting case to examine, which is why people have been doing it for years. Even as such, with the growing amount of students accepted within universities, these algorithms became more and more important for building a timetable schedule. 
 
@@ -66,11 +67,13 @@ This randomisation process however is done with constraints, to ensure that this
 
 #### Hill Climber
 
-To improve on this, our idea was to find a way to iterate over this using the hill climber algorithm, we aim to make small incremental changes to get less total minus points. 
+To improve on this, our idea was to find a way to iterate over this using the hill climber algorithm, in which aim to make small continious incremental changes to get a lower score and therefore a more optimised solution.
 
-Swapping specific instances of that subject’s activity with an empty timetable slot present within this version of the timetable. Then the number of minus points from this change would be compared to the amount of the minus points from before the change was implemented. If the number of mins points has decreased, we maintain this new change to the timetable. This is continued for the activity until none of the changes give any improvements to the number of points we have.
+This was achieved by swapping specific instances of that subject’s activity with an empty timetable slot. This change should cause a 
 
-In the beginning, small changes made massive changes to the number of minus points, with one change being able to negate numbers in the double digits. However, as this continued, and the timetable became more optimised, the changes became harder to find, and they would also offer smaller and smaller changes. Till at about ***INSERT NEW SCORE***, where even after more than almost 1000 active switches the algorithm was unable to find an improvement for the number of minus points. 
+"""Then the number of minus points from this change would be compared to the amount of the minus points from before the change was implemented. If the number of mins points has decreased, we maintain this new change to the timetable. This is continued for the activity until none of the changes give any improvements to the number of points we have.
+
+In the beginning, small changes made massive improvements to the number of minus points, with one change being able to negate numbers in the double digits. However, as this continued, and the timetable became more optimised, the changes became harder to find, and they would also offer smaller and smaller changes. Till at about ***INSERT NEW SCORE***, where even after more than almost 1000 active switches the algorithm was unable to find an improvement for the number of minus points."""
 
 ***REPLACE IMAGE WITH NEW ALGORITHM RESULTS***
 <p align="center">
