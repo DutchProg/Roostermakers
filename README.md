@@ -7,7 +7,11 @@ Programmeer Theorie - Lectures & Lesroosters
 ### Building timetables with digital means 
 - - -
 
-The creation of a timetable for universities and schools is a complicated and difficult problem when it comes to using computer agorithms. To begin with timetables don't have a clear distinction of what can be considered appectable or not acceptible. Partially this is due to all the criteria and elements that are necessary to consider, making it a complete multi-dimensional problem. It's also something that is completely individual to the insitution for which algorithm is being designed (Willemen, 2002). 
+<p align="center">
+    <img src="images/roostering.jpg " width="200">
+</p>
+
+The creation of a timetable for universities and schools is a complicated and difficult problem when it comes to using computer agorithms. To begin with timetables don't have a clear distinction of what can be considered appectable or not acceptible. Partially this is due to all the criteria and elements that are necessary to consider, making it a complete multi-dimensional problem. It's also something that is completely individual to the insitution for which algorithm is being designed (Willemen, 2002).
 
 Often the algorithm only being used as the starting point for the creation of the timetable, where fine tuning is done by hand. Timetable construction, especially for schools is a never ending problem, in which an optimal solution will never be found, every semester the amount of students, classes offered, and teachers available changes. But this is exactly what makes it such an interesting case to examine, which is why people have been doing it for years. Even as such, with the growing amount of students accepted within universities, these algorithms became more and more important for building a timetable schedule. 
 
@@ -45,31 +49,43 @@ To begin tackling the problem
 
 #### Baseline
 
-We have put together our first results by calculating the minimum amount of total combination of classes, workgroups, and tutorials for each specific activity. Based on this we are able to fill the entire week schedule, by simply filling it by putting the activities in the first slot available. Which gives us a complete timetable. After which we use the shuffling process to create a randomisation of the activities and the time slots and days which the fit in. To be able to compare and understand how confident we are with our solution, we needed to track the minus points. Using a for loop which we iterate over 100,000 times, we can calculate those points based on the specific timetable and how each student is slotted in. The current best solution we calculated was ***INSERT NEW SCORE*** minus points.
+Our baseline for this project is based on randomisation. To begin this process we first had to build a timetable which contained all the activities of all the subjects. So we had to calculate the minimum amount of total combination of lectures, workgroups, and tutorials for each specific activity. Based on this we are able to fill the entire week schedule, by simply putting the activities in the first slot available. This gave us a complete timetable. We then proceed to use the shuffling tool within python to create a randomisation of the activities and the time slots and days which the fit in. We would then compare the minus points to work out which timetable was the more optimal solution.
+
+Using a for loop which we iterate over 100,000 times, we can calculate those points based on the specific timetable and how each student is slotted in. 
+
+The current best solution we calculated was ***INSERT NEW SCORE*** minus points.
+
+***REPLACE IMAGE WITH NEW ALGORITHM RESULTS***
+<p align="center">
+    <img src="images/baseline_results.jpeg " width="500">
+</p>
+<br>
+*figure 1: results from the randomisation process*
 
 This randomisation process however is done with constraints, to ensure that this timetable is valid and that it is something we can work with. Therefore, it takes into account the room capacity and ensure that the activity is put in the room with the smallest capacity. On top of this, we aim to use the night slots as little as possible, due to the extra points they give. However, it may be in later stages that we find combinations where the night slot offers less minus points than without using it. We also don’t take into account that for our solution we are also able to make extra workgroups or tutorials even if there are only a few students in there, as this may too give less minus points. 
 
-***REPLACE IMAGE WITH NEW ALGORITHM RESULTS***
-<img src="images/baseline_results.jpeg " width="500">
-
 #### Hill Climber
 
-To improve on this, our idea was to find a way to iterate over this using the hill climber algorithm, we aim to make small incremental changes to get less total minus points. 
+To improve on this, our idea was to find a way to iterate over this using the hill climber algorithm, in which aim to make small continious incremental changes to get a lower score and therefore a more optimised solution.
 
-Swapping specific instances of that subject’s activity with an empty timetable slot present within this version of the timetable. Then the number of minus points from this change would be compared to the amount of the minus points from before the change was implemented. If the number of mins points has decreased, we maintain this new change to the timetable. This is continued for the activity until none of the changes give any improvements to the number of points we have.
+This was achieved by swapping specific instances of that subject’s activity with an empty timetable slot. This change should cause a 
 
-In the beginning, small changes made massive changes to the number of minus points, with one change being able to negate numbers in the double digits. However, as this continued, and the timetable became more optimised, the changes became harder to find, and they would also offer smaller and smaller changes. Till at about ***INSERT NEW SCORE***, where even after more than almost 1000 active switches the algorithm was unable to find an improvement for the number of minus points. 
+"""Then the number of minus points from this change would be compared to the amount of the minus points from before the change was implemented. If the number of mins points has decreased, we maintain this new change to the timetable. This is continued for the activity until none of the changes give any improvements to the number of points we have.
+
+In the beginning, small changes made massive improvements to the number of minus points, with one change being able to negate numbers in the double digits. However, as this continued, and the timetable became more optimised, the changes became harder to find, and they would also offer smaller and smaller changes. Till at about ***INSERT NEW SCORE***, where even after more than almost 1000 active switches the algorithm was unable to find an improvement for the number of minus points."""
 
 ***REPLACE IMAGE WITH NEW ALGORITHM RESULTS***
-<img src="images/hillclimber_results.jpeg " width="500">
+<p align="center">
+    <img src="images/hillclimber_results.jpeg " width="500">
+</p>
+<br>
+*figure 2: results from the hill climber algorithm*
 
 To further improve the algorithm, since swapping activities with empty slots offers no more improvements, it would make sense to take it one step at a time to not make it too complicated. The next logical step would be to begin swapping the activities with other activities, and to compare the minus points based on these changes in a similar way. Further we can also look at doing the same with students, by then taking into account which specific group they are being placed in, and then moving them between the different activity groups, or maybe event creating another one if it acts as an improvement. 
 
 #### Theoretical Optimum
 
-Considering all the academic papers surrounding this topic concerning the difficulty of finding a solution for this problem, we can safely assume the theoretical optimimum, which in this case is a minimum, has to a value above 0. In general due to the individual nature of this problem, and the fact that compromises have to be made in its creation to find something which is as optimal as possible. Since it is not possible to make something which matches both all the students, teachers, and the insititution. 
-
-For example, with the case we have chosen there is a need to compare whether the evening slot gives more or less points than student conflicts that occur. Each choice adds points to the score, however one adds less than the other. 
+Considering all the academic papers surrounding this topic concerning the difficulty of finding a solution for this problem, we can safely assume the theoretical optimimum, which in this case is a minimum, has to a value above 0. In general due to the individual nature of this problem, and the fact that compromises have to be made in its creation to find something which is as optimal as possible. Since it is not possible to make something which matches both all the students, teachers, and the insititution. For example, with the case we have chosen there is a need to compare whether the evening slot gives more or less points than student conflicts that occur. Each choice adds points to the score, however one adds less than the other. In this sense we can see the problem as being NP-complete (mjv, 2010). Whereby all possible combinations need to be explored to find the list of acceptable solutions. Of course doing this in a way in which we approach all combinations is impractical, therefore, as we did with our approach, we need to slowly approach the factors and elements of the problem one by one. Of course there are also arguments to be made for the application of quantifying aspects of this timetable, as to reduce human individual necessities to simply a scheduling need. But to consider all these factors would make this a near impossible process, so bias and constraints are necessary in a problem like this.
 
 ### Results
 - - -
@@ -77,7 +93,9 @@ For example, with the case we have chosen there is a need to compare whether the
 #### Baseline
 
 time:
+<br/>
 moves: 100,000
+<br/>
 points:
 
 #### First Algorithm
@@ -107,6 +125,8 @@ python3 rooster.py
 
 
 ## References
+
+Algorithm for creating a school timetable. Stack Overflow. (1958, January 1). Retrieved February 2, 2022, from https://stackoverflow.com/questions/2177836/algorithm-for-creating-a-school-timetable 
 
 Almond, M. (1966). An algorithm for constructing university timetables. The Computer Journal, 8(4), 331-340.
 Chicago 
