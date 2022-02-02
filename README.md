@@ -56,7 +56,9 @@ Using a for loop which we iterate over 100,000 times, we can calculate those poi
 The current best solution we calculated was ***INSERT NEW SCORE*** minus points.
 
 ***REPLACE IMAGE WITH NEW ALGORITHM RESULTS***
-<img src="images/baseline_results.jpeg " width="500">
+<p align="center">
+    <img src="images/baseline_results.jpeg " width="500">
+</p>
 <br>
 *figure 1: results from the randomisation process*
 
@@ -71,7 +73,9 @@ Swapping specific instances of that subject’s activity with an empty timetable
 In the beginning, small changes made massive changes to the number of minus points, with one change being able to negate numbers in the double digits. However, as this continued, and the timetable became more optimised, the changes became harder to find, and they would also offer smaller and smaller changes. Till at about ***INSERT NEW SCORE***, where even after more than almost 1000 active switches the algorithm was unable to find an improvement for the number of minus points. 
 
 ***REPLACE IMAGE WITH NEW ALGORITHM RESULTS***
-<img src="images/hillclimber_results.jpeg " width="500">
+<p align="center">
+    <img src="images/hillclimber_results.jpeg " width="500">
+</p>
 <br>
 *figure 2: results from the hill climber algorithm*
 
