@@ -7,6 +7,8 @@ Programmeer Theorie - Lectures & Lesroosters
 ### Building timetables with digital means 
 - - -
 
+<img src="http://some_place.com/image.png">
+
 The creation of a timetable for universities and schools is a complicated and difficult problem when it comes to using computer agorithms. To begin with timetables don't have a clear distinction of what can be considered appectable or not acceptible. Partially this is due to all the criteria and elements that are necessary to consider, making it a complete multi-dimensional problem. It's also something that is completely individual to the insitution for which algorithm is being designed (Willemen, 2002). 
 
 Often the algorithm only being used as the starting point for the creation of the timetable, where fine tuning is done by hand. Timetable construction, especially for schools is a never ending problem, in which an optimal solution will never be found, every semester the amount of students, classes offered, and teachers available changes. But this is exactly what makes it such an interesting case to examine, which is why people have been doing it for years. Even as such, with the growing amount of students accepted within universities, these algorithms became more and more important for building a timetable schedule. 
@@ -56,8 +58,6 @@ The current best solution we calculated was ***INSERT NEW SCORE*** minus points.
 figure 1: results from the randomisation process
 
 This randomisation process however is done with constraints, to ensure that this timetable is valid and that it is something we can work with. Therefore, it takes into account the room capacity and ensure that the activity is put in the room with the smallest capacity. On top of this, we aim to use the night slots as little as possible, due to the extra points they give. However, it may be in later stages that we find combinations where the night slot offers less minus points than without using it. We also don’t take into account that for our solution we are also able to make extra workgroups or tutorials even if there are only a few students in there, as this may too give less minus points. 
-
-
 
 #### Hill Climber
 
