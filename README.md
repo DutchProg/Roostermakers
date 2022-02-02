@@ -53,9 +53,9 @@ The current best solution we calculated was ***INSERT NEW SCORE*** minus points.
 ***REPLACE IMAGE WITH NEW ALGORITHM RESULTS***
 <p align="center">
     <img src="images/baseline_results.jpeg " width="500">
+    <br>
+    *figure 1 results from the randomisation process
 </p>
-<br>
-*figure 1: results from the randomisation process*
 
 This randomisation process however is done with constraints: it takes into account the room capacity and ensure that each activity is put in the room with the smallest capacity. On top of this, we aimed to use the night slots as little as possible. However, it may be in later stages that we find combinations where the night slot offers less minus points than without using it. 
 
@@ -72,9 +72,10 @@ After ***N*** amount of changes our total points equated to ***MALUSPUNTEN***
 ***REPLACE IMAGE WITH NEW ALGORITHM RESULTS***
 <p align="center">
     <img src="images/hillclimber_results.jpeg " width="500">
+    <br>
+    *figure 2 results from the hill climber algorithm*
 </p>
-<br>
-*figure 2: results from the hill climber algorithm*
+
 
 To further improve the algorithm, since swapping activities with empty slots offers no more improvements, it would make sense to take it one step at a time to not make it too complicated. 
 
