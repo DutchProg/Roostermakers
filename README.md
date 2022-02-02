@@ -43,18 +43,27 @@ To begin tackling the problem
 - compare baseline with the initial algorithm and final algorithm
     - keep in mind the bias we apply
 
-#### baseline
-randomisation
+##### Baseline
+
+We have put together our first results by calculating the minimum amount of total combination of classes, workgroups, and tutorials for each specific activity. Based on this we are able to fill the entire week schedule, by simply filling it by putting the activities in the first slot available. Which gives us a complete timetable. After which we use the shuffling process to create a randomisation of the activities and the time slots and days which the fit in. To be able to compare and understand how confident we are with our solution, we needed to track the minus points. Using a for loop which we iterate over 100,000 times, we can calculate those points based on the specific timetable and how each student is slotted in. The current best solution we calculated was ***INSERT NEW SCORE*** minus points.
+
+This randomisation process however is done with constraints, to ensure that this timetable is valid and that it is something we can work with. Therefore, it takes into account the room capacity and ensure that the activity is put in the room with the smallest capacity. On top of this, we aim to use the night slots as little as possible, due to the extra points they give. However, it may be in later stages that we find combinations where the night slot offers less minus points than without using it. We also don’t take into account that for our solution we are also able to make extra workgroups or tutorials even if there are only a few students in there, as this may too give less minus points. 
 
 <img src="images/baseline_results.jpeg " width="500">
 REPLACE IMAGE WITH NEW ALGORITHM RESULTS
 
-#### hill climber
+##### Hill Climber
 
-multiple hill climber algorithms 
+To improve on this, our idea was to find a way to iterate over this using the hill climber algorithm, we aim to make small incremental changes to get less total minus points. 
+
+Swapping specific instances of that subject’s activity with an empty timetable slot present within this version of the timetable. Then the number of minus points from this change would be compared to the amount of the minus points from before the change was implemented. If the number of mins points has decreased, we maintain this new change to the timetable. This is continued for the activity until none of the changes give any improvements to the number of points we have.
+
+In the beginning, small changes made massive changes to the number of minus points, with one change being able to negate numbers in the double digits. However, as this continued, and the timetable became more optimised, the changes became harder to find, and they would also offer smaller and smaller changes. Till at about ***INSERT NEW SCORE***, where even after more than almost 1000 active switches the algorithm was unable to find an improvement for the number of minus points. 
 
 <img src="images/hillclimber_results.jpeg " width="500">
 REPLACE IMAGE WITH NEW ALGORITHM RESULTS
+
+To further improve the algorithm, since swapping activities with empty slots offers no more improvements, it would make sense to take it one step at a time to not make it too complicated. The next logical step would be to begin swapping the activities with other activities, and to compare the minus points based on these changes in a similar way. Further we can also look at doing the same with students, by then taking into account which specific group they are being placed in, and then moving them between the different activity groups, or maybe event creating another one if it acts as an improvement. 
 
 - theorertical optimum?? 
     - is it possible?
