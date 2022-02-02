@@ -101,8 +101,7 @@ def activity_switch_emptyslot(activities_to_switch, solution):
     
     while changed_activity < activities_to_switch:
         # print every 100 swaps
-        if changed_activity % 100 == 0:
-            print(f"Swapped {changed_activity} activities into an empty slot in {change_tries} tries")
+        
 
         # every time we choose a random activity to switch into an empty slot
         for activity in sorted(activity_list,key=lambda _: random.random()):
@@ -305,6 +304,78 @@ def student_switch(students_switches, solution):
                                 activity_new.add_student(random_student)
                                 student.add_activity(activity)
                                 random_student.add_activity(activity_new)
+
+                                
+
+    return change_tries,changed_student,malus_list,student_data,activity_list,week_data, course_list
+
+
+
+def student_switch_emptyslot(students_switches, solution):
+
+    # we initialize our data in more easy to understand variables
+    student_data = solution[0]
+    course_list =  solution[1]
+    activity_list = solution[2]
+    week_data = solution[3]
+    
+    # we will keep track of how many students we switched up
+    changed_student = 0
+    change_tries = 0
+    # we also keep track of our malus points, so we can plot as function of swaps
+    malus_list = []
+    
+    while changed_student < students_switches:
+
+        # print every 100 swaps
+        if changed_student % 100 == 0:
+            print(f"Swapped {changed_student} into another activity with capacity in {change_tries} tries")
+        # every time we choose a random student to switch with another
+        student = random.choice(student_data)
+
+        # we save the current malus points, so we can track if a change is positive
+        maluscount = malus_calc.malus_calc(student_data,activity_list)
+
+        changed = False
+
+        # we choose a random activity that the student follows
+        for activity in sorted(student.activities,key=lambda _: random.random()):
+                
+                # we check the activities for same type of activity  
+                for activity_new in activity_list:
+
+                    if changed == False:
+                        # check if we found one
+                        if activity.name == activity_new.name and activity.type == activity_new.type and student not in activity_new.students and len(activity_new.students) < activity_new.capacity :
+                            
+                            
+                            # we remove and add the corresponding students
+                            activity.remove_student(student)
+                            student.remove_activity(activity)
+
+                            student.add_activity(activity_new)
+                            activity_new.add_student(student)                   
+                        
+
+                            # we keep track of the change to our maluspoints
+                            changed = True
+                            malus_list.append(maluscount)  
+                            changed_student += 1
+                            change_tries += 1
+                            if malus_calc.malus_calc(student_data,activity_list) > maluscount:
+
+                                # we revert the changed to malus tracking
+                                changed_student -= 1
+                                malus_list.pop()
+                                changed = False
+
+                                # we then revert the changed to our activities and student 
+                                activity_new.remove_student(student)
+                                student.remove_activity(activity_new)
+
+                                activity.add_student(student)
+                                student.add_activity(activity)
+                                
 
                                 
 
