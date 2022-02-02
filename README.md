@@ -93,6 +93,8 @@ reflection on our process
  - backtracking 
  - ambiguity of the project 
  - difficult bugs to fix 
+ - keep in mind our intepretation of the results what we are keeping in mind
+ - time is not important factor, as long as it doesnt take too long eg 6 months
 
 ### Results
 - - -
@@ -132,17 +134,6 @@ points:
 #### Visualisation
 
 produces a visual timetable with the timetable which allows for the least amount of maluspunten 
-
-
-***REMOVE THIS PART AFTER FINISH***
-
-keep in mind our intepretation of the results what we are keeping in mind
-- time is not important factor, as long as it doesnt take too long eg 6 months
-- still keep in mind the time -- which hardware gave the time 
-- keep in mind how many moves the hill climber did
-
-
-
 
 ## References
 
