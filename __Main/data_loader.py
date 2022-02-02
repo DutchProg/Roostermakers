@@ -7,8 +7,8 @@ def get_data():
         reader = csv.reader(f)
         next(reader)
         for element in list(reader):
-            #Naam - 0#Hoorcolleges,#Werkcolleges,Max. stud.,#Practica,Max. stud.,E(studenten)
-            # we have a dict with name of course as key, and number of students lecture_count, tutorial_count, tut_max and practica_count and prac,maxin a list
+
+            #Naam #Hoorcolleges,#Werkcolleges,#Max.stud,#Practica,#Max.stud,#E(studenten)
             if int(element[2]) == 0:
                 if int(element[4]) == 0:
                     course_data[element[0]] = [int(element[-1]), int(element[1]), int(element[2]), 0, int(element[4]), 0]

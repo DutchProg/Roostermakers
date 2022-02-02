@@ -11,49 +11,45 @@ import malus_calc
 
 solution = switch.single_loop()
 
-change_tries,changes,malus_list,student_data,activity_list,week_data,course_list = switch.activity_switch_emptyslot(500,solution)
-change_tries,changes,malus_list,student_data,activity_list,week_data,course_list = switch.activity_switch(500,solution)
-change_tries,changes,malus_list,student_data,activity_list,week_data,course_list = switch.student_switch(500,solution)
-change_tries,changes,malus_list,student_data,activity_list,week_data,course_list = switch.activity_switch_emptyslot(500,solution)
-change_tries,changes,malus_list,student_data,activity_list,week_data,course_list = switch.activity_switch(500,solution)
-change_tries,changes,malus_list,student_data,activity_list,week_data,course_list = switch.student_switch_emptyslot(500,solution)
+act_changes = 0
+stud_changes = 0
+total_malus = []
+malus_list_3,malus_list_2,change_tries,changes,malus_list,student_data,activity_list,week_data,course_list = switch.activity_switch_emptyslot(30,solution)
+act_changes += change_tries
+total_malus.extend(malus_list_2)
+malus_list_3,malus_list_2,change_tries,changes,malus_list,student_data,activity_list,week_data,course_list = switch.activity_switch(30,solution)
+act_changes += change_tries
+total_malus.extend(malus_list_2)
+malus_list_3,malus_list_2,change_tries,changes,malus_list,student_data,activity_list,week_data,course_list = switch.student_switch(60,solution)
+stud_changes += change_tries
+total_malus.extend(malus_list_2)
+malus_list_3,malus_list_2,change_tries,changes,malus_list,student_data,activity_list,week_data,course_list = switch.activity_switch_emptyslot(30,solution)
+act_changes += change_tries
+total_malus.extend(malus_list_2)
+malus_list_3,malus_list_2,change_tries,changes,malus_list,student_data,activity_list,week_data,course_list = switch.activity_switch(30,solution)
+act_changes += change_tries
+total_malus.extend(malus_list_2)
+malus_list_3,malus_list_2,change_tries,changes,malus_list,student_data,activity_list,week_data,course_list = switch.student_switch_emptyslot(60,solution)
+stud_changes += change_tries
+total_malus.extend(malus_list_2)
+total_changes = stud_changes+act_changes
+
+
+
+
 
 print("final malus count: {}".format(malus_calc.malus_calc(student_data,activity_list)))
 print("We tried to swap: {}, but were succesful with: {}".format(change_tries, changes))
 
-visuals.plotter(week_data)
+# visuals.plotter(week_data)
 
-plt.plot(np.arange(changes), malus_list)
+plt.plot(np.arange(total_changes), total_malus)
+#plt.plot(np.arange(change_tries), malus_list_3)
 
-plt.xlabel("Amount of activity switches")
-plt.ylabel("Maluspoints")
+plt.title("30 seconds of activity switching with other activities")
+plt.xlabel("Amount of activity switch attempts")
+plt.ylabel("Maluspoint decrease per switch attempt")
 plt.show()
-
-# for student_1 in student_data:
-#     print(student_1.name)
-#     for i in student_1.activities:
-#         print(i.name,i.type)
-
-
-
-
-        
-# alles hieronder is om N aantal random roosters te maken
-
-
-
-# malus =  9999 
-# malus_graph = []
-
-# for i in range(100):
-#     loop = single_loop()
-#     solution = loop[1]
-#     malus_temp = loop[0]
-#     malus_graph.append(malus_temp)
-
-#     if malus_temp < malus:
-#         malus = malus_temp
-#         solution_short = solution
 
 
 # sys.setrecursionlimit(3000)
