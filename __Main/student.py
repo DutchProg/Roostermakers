@@ -34,12 +34,15 @@ class Student:
                 del self.activities[i]
             
         
+    # this function checks gap hours and double planned hours
+    def malus_calc(self, verbose = False):
 
-    def malus_calc(self):
         activity_times = []
         activity_dict = {"Monday":[],"Tuesday":[],"Wednesday":[],"Thursday":[],"Friday":[]}
-        print(self.name)
+
+        # we index every activity based on their time and day
         for activity in self.activities:
+
             index = 0
             activity_times.append((activity.day.day,activity.time.time))
             
@@ -57,37 +60,40 @@ class Student:
             
             if activity.time.time == "17:00-19:00":
                 index = 5   
+                
             activity_dict[activity.day.day].append(index)
-        print(activity_dict)
           
         malus_points_gap = 0
-        more_then2_gaps = False
-        for key in activity_dict:
-            index_previous = None
 
-            # de loop gaat er vanuit dat er geen blokken zijn met meer dan 2 tussenuren, dat mag nml niet.
+        for key in activity_dict:
+
+            # we use the consec function to find the longest streak of missing numbers
             consec = lst.longestConsecutive(activity_dict[key])
+
             if consec == 1:
                 malus_points_gap += 1
 
             if consec == 2:
                 malus_points_gap += 3
-        
+
+            # this is a variable that needs to be integrated, no mroe than 2 hours are allowed
             if consec > 2:
                 more_then2_gaps = True
 
 
-    	
+    	# we calculate the total malus points for this student
         malus_points_double = len(activity_times) - len(set(activity_times))
         malus_points_total = malus_points_gap + malus_points_double
-        print(malus_points_double, malus_points_gap)
+        if verbose:
+            print(malus_points_double,malus_points_gap)
+
         return malus_points_total
 
         
             
         
 
-
+# This returns a list with all the students in a class instance.
 def get_students():
     students_list = [] 
 
