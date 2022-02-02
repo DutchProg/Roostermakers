@@ -57,7 +57,7 @@ The current best solution we calculated was ***INSERT NEW SCORE*** minus points.
     figure 1: results from the randomisation process
 </p>
 
-This randomisation process however is done with constraints: it takes into account the room capacity and ensure that each activity is put in the room with the smallest capacity. On top of this, we aimed to use the night slots as little as possible. However, it may be in later stages that we find combinations where the night slot offers less minus points than without using it. 
+This randomisation process however is done with constraints: it takes into account the room capacity and ensure that each activity is put in the room with the smallest capacity. On top of this, we aimed to use the night slots as little as possible. However, it may be in later stages that we find combinations where the night slot offers less minus points than without using it. Finally due to complications we encountered with the coding, and the time pressure in completing the project we had to ignore certain aspects of the case. Specifically, within the requiremenets it was stated that more than three empty slots in between subjects would not be allowed. For creating a more streamlined code, we have decided to include this and give three points when there are gaps of 2 and higher.
 
 #### Hill Climber
 
@@ -75,7 +75,6 @@ After ***N*** amount of changes our total points equated to ***MALUSPUNTEN***
     <br>
     figure 2: results from the hill climber algorithm
 </p>
-
 
 To further improve the algorithm, since swapping activities with empty slots offers no more improvements, it would make sense to take it one step at a time to not make it too complicated. 
 
