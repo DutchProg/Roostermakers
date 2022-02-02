@@ -67,10 +67,30 @@ To further improve the algorithm, since swapping activities with empty slots off
 
 #### Theoretical Optimum
 
-Considering all the academic papers surrounding this topic concerning the difficulty of finding a solution for this problem, we can safely assume the theoretical optimimum, which in this case is a minimum, has to a value above 0. In general due to the individual nature of this problem and the
+Considering all the academic papers surrounding this topic concerning the difficulty of finding a solution for this problem, we can safely assume the theoretical optimimum, which in this case is a minimum, has to a value above 0. In general due to the individual nature of this problem, and the fact that compromises have to be made in its creation to find something which is as optimal as possible. Since it is not possible to make something which matches both all the students, teachers, and the insititution. 
+
+For example, with the case we have chosen there is a need to compare whether the evening slot gives more or less points than student conflicts that occur. Each choice adds points to the score, however one adds less than the other. 
 
 ### Results
 - - -
+
+#### Baseline
+
+time:
+moves: 100,000
+points:
+
+#### First Algorithm
+
+time:
+moves:
+points:
+
+#### Second Algorithm
+
+time:
+moves:
+points:
 
 keep in mind our intepretation of the results what we are keeping in mind
 
@@ -78,21 +98,12 @@ keep in mind our intepretation of the results what we are keeping in mind
 - still keep in mind the time -- which hardware gave the time 
 - keep in mind how many moves the hill climber did
 
-- how to get these specific results from our project using the 
-python3 rooster.py
+- MENTION THE HARDWARE UPON WHICH THESE CALCULATIONS WERE DONE eg affects time / computing power
 
 produces a visual timetable with the timetable which allows for the least amount of maluspunten 
 
-#### Baseline
-
-
-
-#### First Algorithm
-
-
-
-#### Second Algorithm
-
+- how to get these specific results from our project using the 
+python3 rooster.py
 
 
 ## References
