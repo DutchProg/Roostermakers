@@ -17,7 +17,7 @@ class Activity:
         self.id = name+"-" + str(id)
 
     def __repr__(self):
-        rep = f"{self.id} {self.type}"
+        rep = "{} {}".format(self.id, self.type)
         return rep
 
 

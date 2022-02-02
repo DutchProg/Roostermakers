@@ -19,7 +19,7 @@ change_tries,changes,malus_list,student_data,activity_list,week_data,course_list
 change_tries,changes,malus_list,student_data,activity_list,week_data,course_list = switch.student_switch_emptyslot(500,solution)
 
 print("final malus count: {}".format(malus_calc.malus_calc(student_data,activity_list)))
-print(f"We tried to swap: {change_tries}, but were succesful with: {changes}")
+print("We tried to swap: {}, but were succesful with: {}".format(change_tries, changes))
 
 visuals.plotter(week_data)
 

@@ -107,10 +107,11 @@ def activity_switch_emptyslot(activities_to_switch, solution):
         for activity in sorted(activity_list,key=lambda _: random.random()):
             
             # print every 100 swaps
-            if changed_activity % 100 == 0:
-                print(f"Swapped {changed_activity} activities into an empty slot in {change_tries} tries")
+            
 
             if changed_activity < activities_to_switch:
+                if changed_activity % 100 == 0:
+                    print("Swapped {} activities into an empty slot in {} tries".format(changed_activity,change_tries))
                 # we save the current malus points, so we can track if a change is positive
                 maluscount = malus_calc.malus_calc(student_data,activity_list)
 
@@ -176,9 +177,10 @@ def activity_switch(activities_to_switch, solution):
         # we choose our activity to switch with another 
         for activity_1 in sorted(activity_list,key=lambda _: random.random()):
             # print every 100 swaps
-            if changed_activity % 100 == 0:
-                print(f"Swapped {changed_activity} activities with another in {change_tries} tries")
+            
             if changed_activity < activities_to_switch:
+                if changed_activity % 100 == 0:
+                    print("Swapped {} activities with another in {} tries".format(changed_activity,change_tries))
                 # we save the current malus points, so we can track if a change is positive
                 maluscount = malus_calc.malus_calc(student_data,activity_list)
 
@@ -250,7 +252,8 @@ def student_switch(students_switches, solution):
 
         # print every 100 swaps
         if changed_student % 100 == 0:
-            print(f"Swapped {changed_student} students with other students in {change_tries} tries")
+            
+            print("Swapped {} students with other students in {} tries".format(changed_student,change_tries))
         # every time we choose a random student to switch with another
         student = random.choice(student_data)
 
@@ -329,7 +332,7 @@ def student_switch_emptyslot(students_switches, solution):
 
         # print every 100 swaps
         if changed_student % 100 == 0:
-            print(f"Swapped {changed_student} into another activity with capacity in {change_tries} tries")
+            print("Swapped {} students into a activity with capacity in {} tries".format(changed_student,change_tries))
         # every time we choose a random student to switch with another
         student = random.choice(student_data)
 
