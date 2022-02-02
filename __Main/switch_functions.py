@@ -86,7 +86,7 @@ def single_loop():
     return [student_data,courses_list,activity_list,week_data]
 
 # switches a activity into a empty slot
-def activity_switch_emptyslot(seconds, solution):
+def activity_switch_emptyslot(seconds,timeout_amount, solution):
 
     # we initialize our data in more easy to understand variables
     student_data = solution[0]
@@ -101,8 +101,12 @@ def activity_switch_emptyslot(seconds, solution):
     malus_list = []
     malus_list_2 = []
     malus_list_3 = []
+
     timeout = time.time() + seconds
+    malus_timeout = 0
+    maluscount = 0
     malus_start = malus_calc.malus_calc(student_data,activity_list)
+
     while time.time() < timeout:
         
         # every time we choose a random activity to switch into an empty slot
@@ -113,8 +117,17 @@ def activity_switch_emptyslot(seconds, solution):
                 if changed_activity % 100 == 0:
                     print("Swapped {} activities into an empty slot in {} tries".format(changed_activity,change_tries))
                 # we save the current malus points, so we can track if a change is positive
-                maluscount = malus_calc.malus_calc(student_data,activity_list)
 
+                # this loop will leave if we reach a certain amount of consecutive non imprioving changes
+                if maluscount == malus_calc.malus_calc(student_data,activity_list):
+                    malus_timeout += 1
+                   
+                    if malus_timeout == timeout_amount:
+                        return malus_list_2 ,change_tries, changed_activity,malus_list
+                else:
+                    malus_timeout = 0
+                maluscount = malus_calc.malus_calc(student_data,activity_list)
+                
                 # we save the current room and timeslot and day the activity is scheduled
                 current_room = activity.room
                 current_timeslot = activity.time
@@ -159,10 +172,10 @@ def activity_switch_emptyslot(seconds, solution):
                                 
 
 
-    return malus_list_3, malus_list_2 ,change_tries, changed_activity,malus_list,student_data,activity_list,week_data,course_list
+    return malus_list_2 ,change_tries, changed_activity,malus_list
 
 # switches two activities with eachother
-def activity_switch(seconds, solution):
+def activity_switch(seconds,timeout_amount, solution):
     # we initialize our data in more easy to understand variables
     student_data = solution[0]
     course_list =  solution[1]
@@ -176,6 +189,9 @@ def activity_switch(seconds, solution):
     malus_list = []
     malus_list_2 = []
     malus_list_3 = []
+
+    malus_timeout = 0
+    maluscount = 0
     timeout = time.time() + seconds
     malus_start = malus_calc.malus_calc(student_data,activity_list)
     while time.time() < timeout:
@@ -187,6 +203,15 @@ def activity_switch(seconds, solution):
             if time.time() < timeout:
                 if changed_activity % 100 == 0:
                     print("Swapped {} activities with another in {} tries".format(changed_activity,change_tries))
+                
+                # this loop will leave if we reach a certain amount of consecutive non imprioving changes
+                if maluscount == malus_calc.malus_calc(student_data,activity_list):
+                    malus_timeout += 1
+                    
+                    if malus_timeout == timeout_amount:
+                        return malus_list_2 ,change_tries, changed_activity,malus_list
+                else:
+                    malus_timeout = 0
                 # we save the current malus points, so we can track if a change is positive
                 maluscount = malus_calc.malus_calc(student_data,activity_list)
 
@@ -239,10 +264,10 @@ def activity_switch(seconds, solution):
                                     activity_1.set_activity(current_day,current_timeslot,current_room)
                                     activity_2.set_activity(day,timeslot,room)
         
-    return malus_list_3,malus_list_2,change_tries, changed_activity,malus_list,student_data,activity_list,week_data,course_list
+    return malus_list_2,change_tries, changed_activity,malus_list
 
 # changes 1 activity of 1 random student with another student in the same type of activity
-def student_switch(seconds, solution):
+def student_switch(seconds,timeout_amount, solution):
 
     # we initialize our data in more easy to understand variables
     student_data = solution[0]
@@ -258,6 +283,8 @@ def student_switch(seconds, solution):
     malus_list_2 = []
     malus_list_3 = []
 
+    malus_timeout = 0
+    maluscount = 0
     malus_start = malus_calc.malus_calc(student_data,activity_list)
     timeout = time.time() + seconds
     while time.time() < timeout:
@@ -266,6 +293,15 @@ def student_switch(seconds, solution):
         if changed_student % 100 == 0:
             
             print("Swapped {} students with other students in {} tries".format(changed_student,change_tries))
+
+        # this loop will leave if we reach a certain amount of consecutive non imprioving changes
+        if maluscount == malus_calc.malus_calc(student_data,activity_list):
+            malus_timeout += 1
+            
+            if malus_timeout == timeout_amount:
+                return malus_list_2 ,change_tries, changed_student,malus_list
+        else:
+            malus_timeout = 0
         # every time we choose a random student to switch with another
         student = random.choice(student_data)
 
@@ -324,11 +360,11 @@ def student_switch(seconds, solution):
 
                                 
 
-    return malus_list_3,malus_list_2,change_tries,changed_student,malus_list,student_data,activity_list,week_data, course_list
+    return malus_list_2,change_tries,changed_student,malus_list
 
 
 
-def student_switch_emptyslot(seconds, solution):
+def student_switch_emptyslot(seconds,timeout_amount, solution):
 
     # we initialize our data in more easy to understand variables
     student_data = solution[0]
@@ -343,7 +379,8 @@ def student_switch_emptyslot(seconds, solution):
     malus_list = []
     malus_list_2 = []
     malus_list_3 = []
-
+    maluscount = 0
+    malus_timeout = 0
     malus_start = malus_calc.malus_calc(student_data,activity_list)
     timeout = time.time() + seconds
     while time.time() < timeout:
@@ -351,6 +388,15 @@ def student_switch_emptyslot(seconds, solution):
         # print every 100 swaps
         if changed_student % 100 == 0:
             print("Swapped {} students into a activity with capacity in {} tries".format(changed_student,change_tries))
+
+        # this loop will leave if we reach a certain amount of consecutive non imprioving changes
+        if maluscount == malus_calc.malus_calc(student_data,activity_list):
+            malus_timeout += 1
+            
+            if malus_timeout == timeout_amount:
+                return malus_list_2 ,change_tries, changed_student,malus_list
+        else:
+            malus_timeout = 0
         # every time we choose a random student to switch with another
         student = random.choice(student_data)
 
@@ -403,4 +449,4 @@ def student_switch_emptyslot(seconds, solution):
 
                                 
 
-    return malus_list_3,malus_list_2,change_tries,changed_student,malus_list,student_data,activity_list,week_data, course_list
+    return malus_list_2,change_tries,changed_student,malus_list
