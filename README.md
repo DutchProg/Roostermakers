@@ -35,7 +35,7 @@ Whilst being a difficult problem, the case offers some relaxation in the things 
 Within the context of this case we are given a clear method of analysing what would be considered a good solution, as this is something that is normally hard to measure. The case does this through applying points (known as minus points) for specific scenarios, with the aim that our solution should achieve the least amount of points possible. The scenarios in which we gain these points are:
 - 5 points for using the aformentioned evening slot
 - 1 point for each subject activity clash each student has
-- We want to minimise the amount of free time a student has between subjects, for each single empty slot that occurs between subjects per student, we will gain 1 point. If there are two empty slots for the student, we will gain 3 points. A gap of three empty slots between subjects is not allowed within this structure.
+- We want to minimise the amount of free time a student has between subjects, for each single empty slot that occurs between subjects per student, we will gain 1 point. If there are two empty slots for the student, we will gain 3 points. A gap of three empty slots between subjects is not allowed within this structure. Unfortunately, we were unable to eliminate gaps larger than 2 slots, these larger gaps were also given 3 points in our program.
 
 This points system will act as a point of reference upon which we will compare and evaluate our algorithms. 
 
@@ -63,7 +63,7 @@ This randomisation process however is done with constraints: it takes into accou
 
 To improve on this initial baseline result, we used a hill climber algorithm, in which we aim to make small continious incremental changes to get a more optimised solution. This was achieved by swapping specific instances of that subject’s activity with an empty timetable slot. 
 
-We would compare the points calculated from thids swap with the points before this change was implemented. If the number of mins points has decreased, we maintain this new change to the timetable, if not we revert to the previous timetable. This is continued for the activity until none of the changes give any improvements to the number of points we have.
+We would compare the points calculated from this swap with the points before this change was implemented. If the number of mins points has decreased or stayed the same, we maintain this new change to the timetable, if not we revert to the previous timetable. We kept changes that did not change the score because this prevents the program from getting stuck in a sub-optimal solution. This is continued for the activity until none of the changes give any improvements to the number of points we have.
 
 In the beginning, small changes made massive improvements to the number of minus points, with one change being able to negate numbers in the double digits. However, as this continued, and the timetable became more optimised, the changes became more minimal, and they would also offer smaller and smaller changes. 
 
@@ -78,7 +78,7 @@ After ***N*** amount of changes our total points equated to ***MALUSPUNTEN***
 
 To further improve the algorithm, since swapping activities with empty slots offers no more improvements, it would make sense to take it one step at a time to not make it too complicated. 
 
-The next logical step was to begin swapping the activities with other activities, and to compare the minus points based on these changes in a similar way. Further we also did the same with students, also taking into account which specific activity group they are being placed in, and then moving them between these groups, even creating another one if it minimises the amount of points. 
+The next logical step was to begin swapping the activities with other activities, and to compare the minus points based on these changes in a similar way. Further we also did the same with students, also taking into account which specific activity group they are being placed in, and then moving them between these groups.
 
 #### Theoretical Optimum
 
