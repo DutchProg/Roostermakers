@@ -82,6 +82,13 @@ student swapping with empty slots
 
 and students swapping with other students
 
+<p align="center">
+    <img src="images/hillclimber_results.jpeg " width="500">
+    <br>
+    figure 2: results from the hill climber algorithm
+</p>
+
+
 #### Theoretical Optimum
 
 Considering all the academic papers surrounding this topic concerning the difficulty of finding a solution for this problem, we can safely assume the theoretical optimimum, which in this case is a minimum, has to a value above 0. In general due to the individual nature of this problem, and the fact that compromises have to be made in its creation to find something which is as optimal as possible. Since it is not possible to make something which matches both all the students, teachers, and the insititution. For example, with the case we have chosen there is a need to compare whether the evening slot gives more or less points than student conflicts that occur. Each choice adds points to the score, however one adds less than the other. In this sense we can see the problem as being NP-complete (mjv, 2010). Whereby all possible combinations need to be explored to find the list of acceptable solutions. Of course doing this in a way in which we approach all combinations is impractical, therefore, as we did with our approach, we need to slowly approach the factors and elements of the problem one by one. Of course there are also arguments to be made for the application of quantifying aspects of this timetable, as to reduce human individual necessities to simply a scheduling need. But to consider all these factors would make this a near impossible process, so bias and constraints are necessary in a problem like this.
@@ -120,7 +127,7 @@ python3 rooster.py
 
 time:
 <br/>
-moves: 100,000
+moves: 
 <br/>
 points:
 
@@ -128,7 +135,7 @@ points:
 
 time:
 <br/>
-moves:
+moves: 
 <br/>
 points:
 
@@ -142,7 +149,13 @@ points:
 
 #### Visualisation
 
-produces a visual timetable with the timetable which allows for the least amount of maluspunten 
+Produces a visual timetable which is based on the list that is produced at the end of the algorithm with the calculated optimum. 
+
+<p align="center">
+    <img src="images/timetable_example.jpeg " width="500">
+    <br>
+    figure 3: visual example of how the table will be visualed
+</p>
 
 ## References
 
