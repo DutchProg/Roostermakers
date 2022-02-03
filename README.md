@@ -105,8 +105,11 @@ reflection on our process
 This is the hardware used when making the calculations
 
 OS: Windows 10 64-bit
+<br>
 CPU: AMD Ryzen 5 3600 6-core processor
+<br>
 GPU: NVIDIA GeForce GTX 1660 SUPER
+<br>
 RAM: 16 gb
 
 #### Commands & instructions for navigating this project and gaining results
