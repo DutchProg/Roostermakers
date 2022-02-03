@@ -124,7 +124,7 @@ GPU: NVIDIA GeForce GTX 1660 SUPER
 <br>
 RAM: 16 gb
 
-#### Data 
+#### Data
 
 |            |      Time     |  Moves  |  Points  |  
 |------------|:-------------:|--------:|----------:
@@ -197,4 +197,4 @@ Chicago
 
 Murray, K., Müller, T., & Rudová, H. (2006, August). Modeling and solution of a complex university course timetabling problem. In International Conference on the Practice and Theory of Automated Timetabling (pp. 189-209). Springer, Berlin, Heidelberg.
 
-Willemen, R. J. (2002). School timetable construction : algorithms and complexity. Technische Universiteit Eindhoven. https://doi.org/10.6100/IR553569 
+Willemen, R. J. (2002). School timetable construction : algorithms and complexity. Technische Universiteit Eindhoven. https://doi.org/10.6100/IR553569
