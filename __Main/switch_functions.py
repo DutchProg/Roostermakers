@@ -259,7 +259,7 @@ def activity_switch(seconds,timeout_amount,change_amount, solution):
         
     return malus_list_2,change_tries, changed_activity,malus_list
 
-# changes 1 activity of 1 random student with another student in the same type of activity
+# changes 1 students with another student
 def student_switch(seconds,timeout_amount,change_amount, solution):
 
     # we initialize our data in more easy to understand variables
@@ -328,6 +328,7 @@ def student_switch(seconds,timeout_amount,change_amount, solution):
                             malus_list_2.append(maluscount)
                             changed_student += 1
                             change_tries += 1
+
                             if malus_calc.malus_calc(student_data,activity_list) > maluscount:
 
                                 # we revert the changed to malus tracking
@@ -350,8 +351,7 @@ def student_switch(seconds,timeout_amount,change_amount, solution):
 
     return malus_list_2,change_tries,changed_student,malus_list
 
-
-
+# changes 1 students into an empty slot
 def student_switch_emptyslot(seconds,timeout_amount,change_amount, solution):
 
     # we initialize our data in more easy to understand variables
