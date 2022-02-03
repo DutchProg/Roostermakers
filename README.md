@@ -44,35 +44,40 @@ This points system will act as a point of reference upon which we will compare a
 
 #### Baseline
 
-The baseline for this project was to have a functioning timetable which contained all the activities of all the subjects. So we had to calculate the minimum amount of total combination of lectures, workgroups, and tutorials for each specific activity. Based on this we are able to fill the entire week schedule, by simply putting the activities in the first slot available. This gave us a complete timetable. 
+The baseline for this project was to have a functioning timetable which contained all the activities of all the subjects. So we had to calculate the minimum amount of total combination of lectures, workgroups, and tutorials for each specific activity. Based on this we are able to fill the entire week schedule, by performing a single random loop which puts the activities in random timeslots. This gave us a complete unoptimised timetable. 
 
-This randomisation process however is done with constraints: it takes into account the room capacity and ensure that each activity is put in the room with the smallest capacity. On top of this, we aimed to use the night slots as little as possible. However, it may be in later stages that we find combinations where the night slot offers less minus points than without using it. 
+This process however is done with constraints: it takes into account the room capacity and ensure that each activity is put in the room with the smallest capacity. On top of this, we aimed to use the night slots as little as possible. However, it may be in later stages that we find combinations where the night slot offers less minus points than without using it. 
 
 #### Algorithm 1: Activity Swap
 
-To improve on this initial baseline result, we used a hill climber algorithm, in which we aim to make small continious incremental changes to get a more optimised solution. 
+To improve on this initial baseline result, we used a hill climber algorithm, in which we aim to make small continious incremental changes to get a more optimised solution. This could be done with a swapping method which would then slowly change the position of certain parts of the case. We would compare the points calculated from this swap with the points before this change was implemented. If the number of mins points has decreased or stayed the same, we maintain this new change to the timetable, if not we revert to the previous timetable. We kept changes that did not change the score because this prevents the program from getting stuck in a sub-optimal solution. This is continued for a specified amount of time which is included with the initiation of the algorithm.
 
-
-
-
-This was achieved by swapping specific instances of that subject’s activity with an empty timetable slot. 
-
-We would compare the points calculated from this swap with the points before this change was implemented. If the number of mins points has decreased or stayed the same, we maintain this new change to the timetable, if not we revert to the previous timetable. We kept changes that did not change the score because this prevents the program from getting stuck in a sub-optimal solution. This is continued for the activity until none of the changes give any improvements to the number of points we have.
+The first algorithm therefore was made to swap the activity instances of each subject. The first algorithm works by swapping specific instances of that subject’s activity with an empty timetable slot. 
 
 In the beginning, small changes made massive improvements to the number of minus points, with one change being able to negate numbers in the double digits. However, as this continued, and the timetable became more optimised, the changes became more minimal, and they would also offer smaller and smaller changes. 
 
 After ***N*** amount of changes our total points equated to ***MALUSPUNTEN***
 
-***REPLACE IMAGE WITH NEW ALGORITHM RESULTS***
 <p align="center">
-    <img src="images/hillclimber_results.jpeg " width="500">
+    <img src="" width="500">
     <br>
-    figure 2: results from the hill climber algorithm
+    figure 1: results from the hill climber algorithm where activities were swapped with empyu slots
 </p>
+
+The next logical step was to begin swapping the activities with other activities, and to compare the minus points based on these changes in a similar way. By processing this algorithm these results were gained:
+
+<p align="center">
+    <img src="" width="500">
+    <br>
+    figure 2: results from the hill climber algorithm where activities were swapped with empyu slots
+</p>
+
+
+
 
 To further improve the algorithm, since swapping activities with empty slots offers no more improvements, it would make sense to take it one step at a time to not make it too complicated. 
 
-The next logical step was to begin swapping the activities with other activities, and to compare the minus points based on these changes in a similar way. 
+
 
 #### Algorithm 2: Student Swap
 
@@ -85,7 +90,7 @@ and students swapping with other students
 <p align="center">
     <img src="images/hillclimber_results.jpeg " width="500">
     <br>
-    figure 2: results from the hill climber algorithm
+    figure 3: results from the hill climber algorithm
 </p>
 
 
@@ -119,15 +124,57 @@ GPU: NVIDIA GeForce GTX 1660 SUPER
 <br>
 RAM: 16 gb
 
-#### Commands & instructions for navigating this project and gaining results
-
-python3 rooster.py
+#### Data 
 
 |            |      Time     |  Moves  |  Points  |  
 |------------|:-------------:|--------:|----------:
 | Baseline   |               |         |          |  
 | Algorithm 1|               |         |          | 
-| Algorithm 2|     |         |          | 
+| Algorithm 2|               |         |          | 
+
+#### Commands & instructions for navigating this project and gaining results
+
+A random base solution is created by single_loop
+
+solution = switch.single_loop(): 
+
+-----------------------------------------------------------------------------------------
+The switch functions are used to apply a certain algoritm for a certain amount of time.
+
+Switch activity into an empty slot:
+switch.activity_switch_emptyslot(seconds,timeout_amount,change_amount, solution)
+
+Switch activity with another activity:
+switch.activity_switch(seconds,timeout_amount,change_amount, solution)
+
+Switch students into an empty slot within an activity:
+switch.student_switch_emptyslot(seconds,timeout_amount,change_amount, solution)
+
+Switch student with another student in the same type of activity
+switch.student_switch(seconds,timeout_amount,change_amount, solution)
+
+The arguments of the switch functions are: 
+- seconds: The time you want the program to run in seconds
+
+- timeout_amount: after n consecutive attempted changes with no decrease in maluspoints the loop will stop 
+(even before the time is up, so set this -1 if you want to run for the full seconds )
+
+- change_amount: If you want the program to stop running after a certain amount of succesfull switches you can input that number, if not put -1.
+
+- solution: just the solution we create with single_loop, the program will continue to use the same schedule if you dont create a new one.
+
+So it is possible to run multiple switch functions in succesion with the same solution.
+
+--------------------------------------------------------------------------------------------
+The loop tuner function will loop trough the different algoritm's
+
+looper.loop_tuner(ac_ac, ac_emp, stud_stud, stud_emp, run_time)
+
+The arguments of the loper function are: activity_with_activity, activity_into_empty, student_with_student,student_into_empty, run_time
+
+activity_with_activity ,activity_into_empty, student_with_student,student_into_empty: These are the variables that will determine the amount of ineffective changes one switch function will make before it will switch to the next one. We noticed that using a higher number for the student switches is more effective.
+
+run_time: this is the total runtime of the program, note that when the runtime is too low to finish the amount of switches with no change, it will divide the runtime between the switch algo'equally.
 
 #### Visualisation
 
@@ -136,7 +183,7 @@ Produces a visual timetable which is based on the list that is produced at the e
 <p align="center">
     <img src="images/timetable_example.jpeg " width="600">
     <br>
-    figure 3: visual example of how the table will be visualed
+    figure n: visual example of how the table will be visualed
 </p>
 
 ## References
