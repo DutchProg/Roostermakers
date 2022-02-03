@@ -56,8 +56,6 @@ The first algorithm works by swapping specific instances of that subject’s act
 
 In the beginning, small changes made massive improvements to the number of minus points, with one change being able to negate numbers in the double digits. However, as this continued, and the timetable became more optimised, the changes became more minimal, and they would also offer smaller and smaller changes. 
 
-After ***N*** amount of changes our total points equated to ***MALUSPUNTEN***
-
 <p align="center">
     <img src="images/Graphs/30_activity_empty.png" width="500">
     <br>
@@ -79,7 +77,7 @@ To further improve the algorithm, since swapping activities with empty slots off
 Further we also did the same with students, also taking into account which specific activity group they are being placed in, and then moving them between these groups. Many of these groups were not full and therefore allowed for movement. 
 
 <p align="center">
-    <img src="images/Graphs/30_student_student.png" width="500">
+    <img src="images/Graphs/30_student_empty.png" width="500">
     <br>
     figure 3: results where students were swapped with other empty slots
 </p>
@@ -87,27 +85,16 @@ Further we also did the same with students, also taking into account which speci
 Then as with the activities we attempted to see what the results would be if we swapped the students with each other. 
 
 <p align="center">
-    <img src="images/Graphs/30_student_empty.png" width="500">
+    <img src="images/Graphs/30_student_student.png" width="500">
     <br>
     figure 4: results where students were swapped with other students 
 </p>
 
-#### Theoretical Optimum
+#### Conclusion & The Theoretical Optimum
 
 Considering all the academic papers surrounding this topic concerning the difficulty of finding a solution for this problem, we can safely assume the theoretical optimimum, which in this case is a minimum, has to a value above 0. In general due to the individual nature of this problem, and the fact that compromises have to be made in its creation to find something which is as optimal as possible. Since it is not possible to make something which matches both all the students, teachers, and the insititution. For example, with the case we have chosen there is a need to compare whether the evening slot gives more or less points than student conflicts that occur. Each choice adds points to the score, however one adds less than the other. In this sense we can see the problem as being NP-complete (mjv, 2010). Whereby all possible combinations need to be explored to find the list of acceptable solutions. Of course doing this in a way in which we approach all combinations is impractical, therefore, as we did with our approach, we need to slowly approach the factors and elements of the problem one by one. Of course there are also arguments to be made for the application of quantifying aspects of this timetable, as to reduce human individual necessities to simply a scheduling need. But to consider all these factors would make this a near impossible process, so bias and constraints are necessary in a problem like this.
 
-#### Conclusion
-
-With the results, we can be quite certain in saying that we ha
-
-In terms of the conclusion it is difficult 
-
-reflection on our process
- - backtracking 
- - ambiguity of the project 
- - difficult bugs to fix 
- - keep in mind our intepretation of the results what we are keeping in mind
- - time is not important factor, as long as it doesnt take too long eg 6 months
+In terms of the conclusion it is difficult, to fully say how optimum our results were. Even with a combination method the results got to what was a low number compared to what we started, however to know whether it is a truly optimum result is impossbile to know. With such a problem with so many factors, there are plenty of things that upon closer inspection that could contribute to a better score. Something which continued work and further reflection on this problem could solve. We must also consider that this makes the project ambigious and difficult, and that in our approach some corners were cut to be able to get to the point we are at now. 
 
 ### Results
 - - -
@@ -123,15 +110,6 @@ CPU: AMD Ryzen 5 3600 6-core processor
 GPU: NVIDIA GeForce GTX 1660 SUPER
 <br>
 RAM: 16 gb
-
-#### Data
-
-|            |      Time     |  Moves  |  Points  |  
-|------------|:-------------:|--------:|----------:
-| Baseline   |               |         |          |  
-| Algorithm 1|               |         |          | 
-| Algorithm 2|               |         |          | 
-
 
 #### Commands & instructions for navigating this project and gaining results
 
