@@ -123,36 +123,11 @@ RAM: 16 gb
 
 python3 rooster.py
 
-|            |      time     |  points |
-|------------|:-------------:|--------:|
-| Baseline   |  left-aligned | $1600   |
-| Algorithm 1|    centered   |   $12   |
-| Algorithm 2| right-aligned |    $1   |
-
-
-#### Baseline
-
-time:
-<br/>
-moves: 
-<br/>
-points:
-
-#### First Algorithm
-
-time:
-<br/>
-moves: 
-<br/>
-points:
-
-#### Second Algorithm
-
-time:
-<br/>
-moves:
-<br/>
-points:
+|            |      Time     |  Moves  |  Points  |  
+|------------|:-------------:|--------:|----------:
+| Baseline   |               |         |          |  
+| Algorithm 1|               |         |          | 
+| Algorithm 2|     |         |          | 
 
 #### Visualisation
 
