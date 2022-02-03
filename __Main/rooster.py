@@ -23,7 +23,7 @@ looper.loop_tuner(ac_ac,ac_emp,stud_stud,stud_emp, run_time)
 """
 
 # Change these variables to your liking.
-seconds = 60
+seconds = 5
 ac_ac = 25
 ac_emp = 25
 stud_stud = 75
