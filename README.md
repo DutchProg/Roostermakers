@@ -152,7 +152,7 @@ points:
 Produces a visual timetable which is based on the list that is produced at the end of the algorithm with the calculated optimum. 
 
 <p align="center">
-    <img src="images/timetable_example.jpeg " width="500">
+    <img src="images/timetable_example.jpeg " width="600">
     <br>
     figure 3: visual example of how the table will be visualed
 </p>
