@@ -90,11 +90,19 @@ Then as with the activities we attempted to see what the results would be if we 
     figure 4: results where students were swapped with other students 
 </p>
 
+Finally by creating a method it was possible to run through the different algorithms in succession. This was done with a time of 25,000 seconds. This led to a solution of 55 minuspoints. However it is possible to see in the graph that the minuspoints quickly arrived at 57, and over the course of a whole evening only managed to achieve 2 less points.
+
+<p align="center">
+    <img src="images/Graphs/Combined_25k_fix.png" width="500">
+    <br>
+    figure 5: combined result of 25k seconds
+</p>
+
 #### Conclusion & The Theoretical Optimum
 
 Considering all the academic papers surrounding this topic concerning the difficulty of finding a solution for this problem, we can safely assume the theoretical optimimum, which in this case is a minimum, has to a value above 0. In general due to the individual nature of this problem, and the fact that compromises have to be made in its creation to find something which is as optimal as possible. Since it is not possible to make something which matches both all the students, teachers, and the insititution. For example, with the case we have chosen there is a need to compare whether the evening slot gives more or less points than student conflicts that occur. Each choice adds points to the score, however one adds less than the other. In this sense we can see the problem as being NP-complete (mjv, 2010). Whereby all possible combinations need to be explored to find the list of acceptable solutions. Of course doing this in a way in which we approach all combinations is impractical, therefore, as we did with our approach, we need to slowly approach the factors and elements of the problem one by one. Of course there are also arguments to be made for the application of quantifying aspects of this timetable, as to reduce human individual necessities to simply a scheduling need. But to consider all these factors would make this a near impossible process, so bias and constraints are necessary in a problem like this.
 
-In terms of the conclusion it is difficult, to fully say how optimum our results were. Even with a combination method the results got to what was a low number compared to what we started, however to know whether it is a truly optimum result is impossbile to know. With such a problem with so many factors, there are plenty of things that upon closer inspection that could contribute to a better score. Something which continued work and further reflection on this problem could solve. We must also consider that this makes the project ambigious and difficult, and that in our approach some corners were cut to be able to get to the point we are at now. 
+In terms of the conclusion it is difficult, to fully say how optimum our results were. Even with a combination method the results got to what was a low number compared to what we started, however to know whether it is a truly optimum result is impossbile to know. With such a problem with so many factors, there are plenty of things that upon closer inspection that could contribute to a better score. Something which continued work and further reflection on this problem could solve. We must also consider that this makes the project ambigious and difficult, and that in our approach some corners were cut to be able to get to the point we are at now. On top of this, more time and a more powerful computer would have helped in trying to see what a more optimum solution could be.
 
 ### Results
 - - -
@@ -163,7 +171,7 @@ Produces a visual timetable which is based on the list that is produced at the e
 <p align="center">
     <img src="images/General/timetable_example.jpeg " width="600">
     <br>
-    figure 5: visual example of how the table will be visualed
+    figure 6: visual example of how the table will be visualed
 </p>
 
 ## References
