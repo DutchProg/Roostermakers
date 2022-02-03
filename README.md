@@ -8,7 +8,7 @@ Programmeer Theorie - Lectures & Lesroosters
 - - -
 
 <p align="center">
-    <img src="images/roostering.jpg " width="200">
+    <img src="images/General/roostering.jpg " width="200">
 </p>
 
 The creation of a timetable for universities and schools is a complicated and difficult problem when it comes to using computer agorithms. To begin with timetables don't have a clear distinction of what can be considered appectable or not acceptible. Partially this is due to all the criteria and elements that are necessary to consider, making it a complete multi-dimensional problem. It's also something that is completely individual to the insitution for which algorithm is being designed (Willemen, 2002).
@@ -52,7 +52,7 @@ This process however is done with constraints: it takes into account the room ca
 
 To improve on this initial baseline result, we used a hill climber algorithm, in which we aim to make small continious incremental changes to get a more optimised solution. This could be done with a swapping method which would then slowly change the position of certain parts of the case. We would compare the points calculated from this swap with the points before this change was implemented. If the number of mins points has decreased or stayed the same, we maintain this new change to the timetable, if not we revert to the previous timetable. We kept changes that did not change the score because this prevents the program from getting stuck in a sub-optimal solution. This is continued for a specified amount of time which is included with the initiation of the algorithm.
 
-The first algorithm therefore was made to swap the activity instances of each subject. The first algorithm works by swapping specific instances of that subject’s activity with an empty timetable slot. 
+The first algorithm works by swapping specific instances of that subject’s activity with an empty timetable slot. 
 
 In the beginning, small changes made massive improvements to the number of minus points, with one change being able to negate numbers in the double digits. However, as this continued, and the timetable became more optimised, the changes became more minimal, and they would also offer smaller and smaller changes. 
 
@@ -61,37 +61,35 @@ After ***N*** amount of changes our total points equated to ***MALUSPUNTEN***
 <p align="center">
     <img src="" width="500">
     <br>
-    figure 1: results from the hill climber algorithm where activities were swapped with empyu slots
+    figure 1: results from the hill climber algorithm where activities were swapped with empty slots
 </p>
 
-The next logical step was to begin swapping the activities with other activities, and to compare the minus points based on these changes in a similar way. By processing this algorithm these results were gained:
+The next logical step was to begin swapping the activities instances of each subject, and to compare the minus points based on these changes in a similar way. By processing this algorithm these results were gained:
 
 <p align="center">
     <img src="" width="500">
     <br>
-    figure 2: results from the hill climber algorithm where activities were swapped with empyu slots
+    figure 2: results where activities were swapped with other activities
 </p>
 
 To further improve the algorithm, since swapping activities with empty slots offers no more improvements, it would make sense to take it one step at a time to not make it too complicated. 
 
 #### Algorithm 2: Student Swap
 
-Further we also did the same with students, also taking into account which specific activity group they are being placed in, and then moving them between these groups.
-
-student swapping with empty slots
-
-and students swapping with other students
+Further we also did the same with students, also taking into account which specific activity group they are being placed in, and then moving them between these groups. Many of these groups were not full and therefore allowed for movement. 
 
 <p align="center">
     <img src=""width="500">
     <br>
-    figure 3: results from the hill climber algorithm
+    figure 3: results where students were swapped with other empty slots
 </p>
 
+Then as with the activities we attempted to see what the results would be if we swapped the students with each other. 
+
 <p align="center">
     <img src=""width="500">
     <br>
-    figure 4: results from the hill climber algorithm
+    figure 4: results where students were swapped with other students 
 </p>
 
 #### Theoretical Optimum
@@ -183,7 +181,7 @@ The arguments of the loper function are:
 Produces a visual timetable which is based on the list that is produced at the end of the algorithm with the calculated optimum. 
 
 <p align="center">
-    <img src="images/timetable_example.jpeg " width="600">
+    <img src="images/General/timetable_example.jpeg " width="600">
     <br>
     figure 5: visual example of how the table will be visualed
 </p>
