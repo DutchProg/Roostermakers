@@ -72,12 +72,7 @@ The next logical step was to begin swapping the activities with other activities
     figure 2: results from the hill climber algorithm where activities were swapped with empyu slots
 </p>
 
-
-
-
 To further improve the algorithm, since swapping activities with empty slots offers no more improvements, it would make sense to take it one step at a time to not make it too complicated. 
-
-
 
 #### Algorithm 2: Student Swap
 
@@ -88,11 +83,16 @@ student swapping with empty slots
 and students swapping with other students
 
 <p align="center">
-    <img src="images/hillclimber_results.jpeg " width="500">
+    <img src=""width="500">
     <br>
     figure 3: results from the hill climber algorithm
 </p>
 
+<p align="center">
+    <img src=""width="500">
+    <br>
+    figure 4: results from the hill climber algorithm
+</p>
 
 #### Theoretical Optimum
 
@@ -132,26 +132,28 @@ RAM: 16 gb
 | Algorithm 1|               |         |          | 
 | Algorithm 2|               |         |          | 
 
+
 #### Commands & instructions for navigating this project and gaining results
 
+-----------------------------------------------------------------------------------------
 A random base solution is created by single_loop
 
-solution = switch.single_loop(): 
+**solution = switch.single_loop():**
 
 -----------------------------------------------------------------------------------------
 The switch functions are used to apply a certain algoritm for a certain amount of time.
 
 Switch activity into an empty slot:
-switch.activity_switch_emptyslot(seconds,timeout_amount,change_amount, solution)
+**switch.activity_switch_emptyslot(seconds,timeout_amount,change_amount, solution)**
 
 Switch activity with another activity:
-switch.activity_switch(seconds,timeout_amount,change_amount, solution)
+**switch.activity_switch(seconds,timeout_amount,change_amount, solution)**
 
 Switch students into an empty slot within an activity:
-switch.student_switch_emptyslot(seconds,timeout_amount,change_amount, solution)
+**switch.student_switch_emptyslot(seconds,timeout_amount,change_amount, solution)**
 
 Switch student with another student in the same type of activity
-switch.student_switch(seconds,timeout_amount,change_amount, solution)
+**switch.student_switch(seconds,timeout_amount,change_amount, solution)**
 
 The arguments of the switch functions are: 
 - seconds: The time you want the program to run in seconds
@@ -168,13 +170,13 @@ So it is possible to run multiple switch functions in succesion with the same so
 --------------------------------------------------------------------------------------------
 The loop tuner function will loop trough the different algoritm's
 
-looper.loop_tuner(ac_ac, ac_emp, stud_stud, stud_emp, run_time)
+**looper.loop_tuner(ac_ac, ac_emp, stud_stud, stud_emp, run_time)**
 
-The arguments of the loper function are: activity_with_activity, activity_into_empty, student_with_student,student_into_empty, run_time
+The arguments of the loper function are:
 
-activity_with_activity ,activity_into_empty, student_with_student,student_into_empty: These are the variables that will determine the amount of ineffective changes one switch function will make before it will switch to the next one. We noticed that using a higher number for the student switches is more effective.
+- activity_with_activity, activity_into_empty, student_with_student, student_into_empty: These are the variables that will determine the amount of ineffective changes one switch function will make before it will switch to the next one. We noticed that using a higher number for the student switches is more effective.
 
-run_time: this is the total runtime of the program, note that when the runtime is too low to finish the amount of switches with no change, it will divide the runtime between the switch algo'equally.
+- run_time: this is the total runtime of the program, note that when the runtime is too low to finish the amount of switches with no change, it will divide the runtime between the switch algo'equally.
 
 #### Visualisation
 
@@ -183,7 +185,7 @@ Produces a visual timetable which is based on the list that is produced at the e
 <p align="center">
     <img src="images/timetable_example.jpeg " width="600">
     <br>
-    figure n: visual example of how the table will be visualed
+    figure 5: visual example of how the table will be visualed
 </p>
 
 ## References
