@@ -59,7 +59,7 @@ In the beginning, small changes made massive improvements to the number of minus
 After ***N*** amount of changes our total points equated to ***MALUSPUNTEN***
 
 <p align="center">
-    <img src="" width="500">
+    <img src="images/Graphs/30_activity_empty.png" width="500">
     <br>
     figure 1: results from the hill climber algorithm where activities were swapped with empty slots
 </p>
@@ -67,7 +67,7 @@ After ***N*** amount of changes our total points equated to ***MALUSPUNTEN***
 The next logical step was to begin swapping the activities instances of each subject, and to compare the minus points based on these changes in a similar way. By processing this algorithm these results were gained:
 
 <p align="center">
-    <img src="" width="500">
+    <img src="images/Graphs/30_activity_activity.png" width="500">
     <br>
     figure 2: results where activities were swapped with other activities
 </p>
@@ -79,7 +79,7 @@ To further improve the algorithm, since swapping activities with empty slots off
 Further we also did the same with students, also taking into account which specific activity group they are being placed in, and then moving them between these groups. Many of these groups were not full and therefore allowed for movement. 
 
 <p align="center">
-    <img src=""width="500">
+    <img src="images/Graphs/30_student_student.png" width="500">
     <br>
     figure 3: results where students were swapped with other empty slots
 </p>
@@ -87,7 +87,7 @@ Further we also did the same with students, also taking into account which speci
 Then as with the activities we attempted to see what the results would be if we swapped the students with each other. 
 
 <p align="center">
-    <img src=""width="500">
+    <img src="images/Graphs/30_student_empty.png" width="500">
     <br>
     figure 4: results where students were swapped with other students 
 </p>
@@ -98,7 +98,9 @@ Considering all the academic papers surrounding this topic concerning the diffic
 
 #### Conclusion
 
-With the results, we can be quite certain in saying that we...
+With the results, we can be quite certain in saying that we ha
+
+In terms of the conclusion it is difficult 
 
 reflection on our process
  - backtracking 
