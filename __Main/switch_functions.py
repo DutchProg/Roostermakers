@@ -3,7 +3,6 @@ import schedule
 import courses
 import student
 import malus_calc
-import numpy as np
 import time
 
 # this function will create a random week schedule with all students in their corresponding classes.
@@ -90,7 +89,6 @@ def activity_switch_emptyslot(seconds,timeout_amount, change_amount, solution):
 
     # we initialize our data in more easy to understand variables
     student_data = solution[0]
-    course_list =  solution[1]
     activity_list = solution[2]
     week_data = solution[3]
 
@@ -100,12 +98,10 @@ def activity_switch_emptyslot(seconds,timeout_amount, change_amount, solution):
     # we also keep track of our malus points, so we can plot as function of swaps
     malus_list = []
     malus_list_2 = []
-    malus_list_3 = []
 
     timeout = time.time() + seconds
     malus_timeout = 0
     maluscount = 0
-    malus_start = malus_calc.malus_calc(student_data,activity_list)
 
     while time.time() < timeout:
         
@@ -114,8 +110,6 @@ def activity_switch_emptyslot(seconds,timeout_amount, change_amount, solution):
             
             if time.time() < timeout:
                 
-                if changed_activity % 100 == 0:
-                    print("Swapped {} activities into an empty slot in {} tries".format(changed_activity,change_tries))
                 # we save the current malus points, so we can track if a change is positive
                 if changed_activity == change_amount:
                     return malus_list_2 ,change_tries, changed_activity,malus_list
@@ -159,7 +153,6 @@ def activity_switch_emptyslot(seconds,timeout_amount, change_amount, solution):
                                 malus_list_2.append(maluscount)
                                 changed_activity += 1
                                 change_tries += 1
-                                malus_list_3.append((malus_start-maluscount)/change_tries)
 
                                 # if the swap gives more maluspoints than before, we revert the change and look for another room
                                 if malus_calc.malus_calc(student_data,activity_list) > maluscount:
@@ -180,7 +173,6 @@ def activity_switch_emptyslot(seconds,timeout_amount, change_amount, solution):
 def activity_switch(seconds,timeout_amount,change_amount, solution):
     # we initialize our data in more easy to understand variables
     student_data = solution[0]
-    course_list =  solution[1]
     activity_list = solution[2]
     week_data = solution[3]
 
@@ -190,12 +182,11 @@ def activity_switch(seconds,timeout_amount,change_amount, solution):
     # we also keep track of our malus points, so we can plot as function of swaps
     malus_list = []
     malus_list_2 = []
-    malus_list_3 = []
 
     malus_timeout = 0
     maluscount = 0
     timeout = time.time() + seconds
-    malus_start = malus_calc.malus_calc(student_data,activity_list)
+
     while time.time() < timeout:
 
         # we choose our activity to switch with another 
@@ -203,8 +194,6 @@ def activity_switch(seconds,timeout_amount,change_amount, solution):
             # print every 100 swaps
             
             if time.time() < timeout:
-                if changed_activity % 100 == 0:
-                    print("Swapped {} activities with another in {} tries".format(changed_activity,change_tries))
                 
                 if changed_activity == change_amount:
                     return malus_list_2 ,change_tries, changed_activity,malus_list
@@ -253,7 +242,7 @@ def activity_switch(seconds,timeout_amount,change_amount, solution):
                                 malus_list_2.append(maluscount)  
                                 changed_activity += 1
                                 change_tries += 1
-                                malus_list_3.append((malus_start-maluscount)/change_tries)
+                               
                                 # if the swap gives more maluspoints than before, we revert the change and look for another room
                                 if malus_calc.malus_calc(student_data,activity_list) > maluscount:
                                     changed = False
@@ -268,16 +257,15 @@ def activity_switch(seconds,timeout_amount,change_amount, solution):
                                     activity_1.set_activity(current_day,current_timeslot,current_room)
                                     activity_2.set_activity(day,timeslot,room)
         
-    return malus_list_2,change_tries, change_amount,malus_list
+    return malus_list_2,change_tries, changed_activity,malus_list
 
 # changes 1 activity of 1 random student with another student in the same type of activity
 def student_switch(seconds,timeout_amount,change_amount, solution):
 
     # we initialize our data in more easy to understand variables
     student_data = solution[0]
-    course_list =  solution[1]
     activity_list = solution[2]
-    week_data = solution[3]
+
     
     # we will keep track of how many students we switched up
     changed_student = 0
@@ -285,18 +273,12 @@ def student_switch(seconds,timeout_amount,change_amount, solution):
     # we also keep track of our malus points, so we can plot as function of swaps
     malus_list = []
     malus_list_2 = []
-    malus_list_3 = []
 
     malus_timeout = 0
     maluscount = 0
-    malus_start = malus_calc.malus_calc(student_data,activity_list)
+
     timeout = time.time() + seconds
     while time.time() < timeout:
-
-        # print every 100 swaps
-        if changed_student % 100 == 0:
-            
-            print("Swapped {} students with other students in {} tries".format(changed_student,change_tries))
 
         if changed_student == change_amount:
                     return malus_list_2 ,change_tries, changed_student,malus_list
@@ -346,7 +328,6 @@ def student_switch(seconds,timeout_amount,change_amount, solution):
                             malus_list_2.append(maluscount)
                             changed_student += 1
                             change_tries += 1
-                            malus_list_3.append((malus_start-maluscount)/change_tries)
                             if malus_calc.malus_calc(student_data,activity_list) > maluscount:
 
                                 # we revert the changed to malus tracking
@@ -375,9 +356,7 @@ def student_switch_emptyslot(seconds,timeout_amount,change_amount, solution):
 
     # we initialize our data in more easy to understand variables
     student_data = solution[0]
-    course_list =  solution[1]
     activity_list = solution[2]
-    week_data = solution[3]
     
     # we will keep track of how many students we switched up
     changed_student = 0
@@ -385,16 +364,12 @@ def student_switch_emptyslot(seconds,timeout_amount,change_amount, solution):
     # we also keep track of our malus points, so we can plot as function of swaps
     malus_list = []
     malus_list_2 = []
-    malus_list_3 = []
+
     maluscount = 0
     malus_timeout = 0
-    malus_start = malus_calc.malus_calc(student_data,activity_list)
+
     timeout = time.time() + seconds
     while time.time() < timeout:
-
-        # print every 100 swaps
-        if changed_student % 100 == 0:
-            print("Swapped {} students into a activity with capacity in {} tries".format(changed_student,change_tries))
 
         if changed_student == change_amount:
                     return malus_list_2 ,change_tries, changed_student,malus_list
@@ -441,7 +416,6 @@ def student_switch_emptyslot(seconds,timeout_amount,change_amount, solution):
                             
                             changed_student += 1
                             change_tries += 1
-                            malus_list_3.append((malus_start-maluscount)/change_tries) 
                             if malus_calc.malus_calc(student_data,activity_list) > maluscount:
 
                                 # we revert the changed to malus tracking

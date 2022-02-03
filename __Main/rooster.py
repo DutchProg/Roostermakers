@@ -1,4 +1,4 @@
-import matplotlib as plt
+import matplotlib.pyplot as plt
 import visuals
 import switch_functions as switch
 import looper
@@ -7,34 +7,42 @@ import numpy as np
 
 
 """
-A random base solution is created by single_loop
+These are the used functions. For instructions on how to use them navigate to the README.md
 
-the rest of the functions are used to apply a certain algoritm for a certain amount of time.
+solution = switch.single_loop():
 
-The arguements of these functions are: seconds,timeout_amount, change_amount, solution
-seconds: The time you want the program to run in seconds
-timeout_amount: after n consecutive attempted changes with no decrease in maluspoints the loop will stop 
-(even before the times, so set this to a high number if y)
+switch.activity_switch_emptyslot(seconds,timeout_amount,change_amount, solution)
+
+switch.activity_switch(seconds,timeout_amount,change_amount, solution)
+
+switch.student_switch_emptyslot(seconds,timeout_amount,change_amount, solution)
+
+switch.student_switch(seconds,timeout_amount,change_amount, solution)
+
+looper.loop_tuner(ac_ac,ac_emp,stud_stud,stud_emp, run_time)
 """
 
-"""
-solution = single_loop()
-switch.activity_switch_emptyslot(seconds,timeout_amount,-1, solution)
-switch.activity_switch(seconds,timeout_amount,-1, solution)
-switch.student_switch_emptyslot(seconds,timeout_amount,-1, solution)
-switch.student_switch(seconds,timeout_amount,-1, solution)
-"""
+# Change these variables to your liking.
+seconds = 60
+ac_ac = 25
+ac_emp = 25
+stud_stud = 75
+stud_emp = 75
+
+week_data,student_data,activity_list,total_changes,total_attempts, malus_list_changes, malus_list_tries = looper.loop_tuner(ac_ac,ac_emp,stud_stud,stud_emp, seconds)
 
 
-week_data,student_data,activity_list,total_changes,total_attempts, malus_list_changes, malus_list_tries = looper.loop_tuner(30,30,500,500, 30)
-
+# This will print the final maluscount of our solution aqquired from the looper function.
 print("final malus count: {}".format(malus_calc.malus_calc(student_data,activity_list)))
 
+# this will print our schedule
 visuals.plotter(week_data)
 
+# this will plot the total changes and the total change attempts on the x axis and the malus points on the y
+# this is a result of the looper function, comment this out if you are not using the looper function.
 plt.plot(np.arange(total_changes), malus_list_changes)
 plt.plot(np.arange(total_attempts), malus_list_tries)
-plt.title("30 seconds of the combined switches")
+plt.title(f"{seconds} seconds of the combined switches")
 plt.xlabel("Amount of total switch attempts")
 plt.ylabel("Maluspoints")
 plt.show()

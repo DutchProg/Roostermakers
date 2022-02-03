@@ -3,7 +3,7 @@ import csv
 def get_data():
     course_data = {}
     
-    with open('Courses.csv') as f:
+    with open('Data/Courses.csv') as f:
         reader = csv.reader(f)
         next(reader)
         for element in list(reader):
@@ -27,7 +27,7 @@ def get_data():
 def get_student_data():
     student_data = {}
     
-    with open('studentenenvakken.csv',  encoding='latin1') as f:
+    with open('Data/Students.csv',  encoding='latin1') as f:
         reader = csv.reader(f)
 
         for row in reader:
