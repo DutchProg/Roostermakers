@@ -8,7 +8,7 @@ Programmeer Theorie - Lectures & Lesroosters
 - - -
 
 <p align="center">
-    <img src="images/roostering.jpg " width="200">
+    <img src="images/General/roostering.jpg " width="200">
 </p>
 
 The creation of a timetable for universities and schools is a complicated and difficult problem when it comes to using computer agorithms. To begin with timetables don't have a clear distinction of what can be considered appectable or not acceptible. Partially this is due to all the criteria and elements that are necessary to consider, making it a complete multi-dimensional problem. It's also something that is completely individual to the insitution for which algorithm is being designed (Willemen, 2002).
@@ -52,62 +52,49 @@ This process however is done with constraints: it takes into account the room ca
 
 To improve on this initial baseline result, we used a hill climber algorithm, in which we aim to make small continious incremental changes to get a more optimised solution. This could be done with a swapping method which would then slowly change the position of certain parts of the case. We would compare the points calculated from this swap with the points before this change was implemented. If the number of mins points has decreased or stayed the same, we maintain this new change to the timetable, if not we revert to the previous timetable. We kept changes that did not change the score because this prevents the program from getting stuck in a sub-optimal solution. This is continued for a specified amount of time which is included with the initiation of the algorithm.
 
-The first algorithm therefore was made to swap the activity instances of each subject. The first algorithm works by swapping specific instances of that subject’s activity with an empty timetable slot. 
+The first algorithm works by swapping specific instances of that subject’s activity with an empty timetable slot. 
 
 In the beginning, small changes made massive improvements to the number of minus points, with one change being able to negate numbers in the double digits. However, as this continued, and the timetable became more optimised, the changes became more minimal, and they would also offer smaller and smaller changes. 
 
-After ***N*** amount of changes our total points equated to ***MALUSPUNTEN***
-
 <p align="center">
-    <img src="" width="500">
+    <img src="images/Graphs/30_activity_empty.png" width="500">
     <br>
-    figure 1: results from the hill climber algorithm where activities were swapped with empyu slots
+    figure 1: results from the hill climber algorithm where activities were swapped with empty slots
 </p>
 
-The next logical step was to begin swapping the activities with other activities, and to compare the minus points based on these changes in a similar way. By processing this algorithm these results were gained:
+The next logical step was to begin swapping the activities instances of each subject, and to compare the minus points based on these changes in a similar way. By processing this algorithm these results were gained:
 
 <p align="center">
-    <img src="" width="500">
+    <img src="images/Graphs/30_activity_activity.png" width="500">
     <br>
-    figure 2: results from the hill climber algorithm where activities were swapped with empyu slots
+    figure 2: results where activities were swapped with other activities
 </p>
 
 To further improve the algorithm, since swapping activities with empty slots offers no more improvements, it would make sense to take it one step at a time to not make it too complicated. 
 
 #### Algorithm 2: Student Swap
 
-Further we also did the same with students, also taking into account which specific activity group they are being placed in, and then moving them between these groups.
-
-student swapping with empty slots
-
-and students swapping with other students
+Further we also did the same with students, also taking into account which specific activity group they are being placed in, and then moving them between these groups. Many of these groups were not full and therefore allowed for movement. 
 
 <p align="center">
-    <img src=""width="500">
+    <img src="images/Graphs/30_student_empty.png" width="500">
     <br>
-    figure 3: results from the hill climber algorithm
+    figure 3: results where students were swapped with other empty slots
 </p>
+
+Then as with the activities we attempted to see what the results would be if we swapped the students with each other. 
 
 <p align="center">
-    <img src=""width="500">
+    <img src="images/Graphs/30_student_student.png" width="500">
     <br>
-    figure 4: results from the hill climber algorithm
+    figure 4: results where students were swapped with other students 
 </p>
 
-#### Theoretical Optimum
+#### Conclusion & The Theoretical Optimum
 
 Considering all the academic papers surrounding this topic concerning the difficulty of finding a solution for this problem, we can safely assume the theoretical optimimum, which in this case is a minimum, has to a value above 0. In general due to the individual nature of this problem, and the fact that compromises have to be made in its creation to find something which is as optimal as possible. Since it is not possible to make something which matches both all the students, teachers, and the insititution. For example, with the case we have chosen there is a need to compare whether the evening slot gives more or less points than student conflicts that occur. Each choice adds points to the score, however one adds less than the other. In this sense we can see the problem as being NP-complete (mjv, 2010). Whereby all possible combinations need to be explored to find the list of acceptable solutions. Of course doing this in a way in which we approach all combinations is impractical, therefore, as we did with our approach, we need to slowly approach the factors and elements of the problem one by one. Of course there are also arguments to be made for the application of quantifying aspects of this timetable, as to reduce human individual necessities to simply a scheduling need. But to consider all these factors would make this a near impossible process, so bias and constraints are necessary in a problem like this.
 
-#### Conclusion
-
-With the results, we can be quite certain in saying that we...
-
-reflection on our process
- - backtracking 
- - ambiguity of the project 
- - difficult bugs to fix 
- - keep in mind our intepretation of the results what we are keeping in mind
- - time is not important factor, as long as it doesnt take too long eg 6 months
+In terms of the conclusion it is difficult, to fully say how optimum our results were. Even with a combination method the results got to what was a low number compared to what we started, however to know whether it is a truly optimum result is impossbile to know. With such a problem with so many factors, there are plenty of things that upon closer inspection that could contribute to a better score. Something which continued work and further reflection on this problem could solve. We must also consider that this makes the project ambigious and difficult, and that in our approach some corners were cut to be able to get to the point we are at now. 
 
 ### Results
 - - -
@@ -123,15 +110,6 @@ CPU: AMD Ryzen 5 3600 6-core processor
 GPU: NVIDIA GeForce GTX 1660 SUPER
 <br>
 RAM: 16 gb
-
-#### Data 
-
-|            |      Time     |  Moves  |  Points  |  
-|------------|:-------------:|--------:|----------:
-| Baseline   |               |         |          |  
-| Algorithm 1|               |         |          | 
-| Algorithm 2|               |         |          | 
-
 
 #### Commands & instructions for navigating this project and gaining results
 
@@ -183,7 +161,7 @@ The arguments of the loper function are:
 Produces a visual timetable which is based on the list that is produced at the end of the algorithm with the calculated optimum. 
 
 <p align="center">
-    <img src="images/timetable_example.jpeg " width="600">
+    <img src="images/General/timetable_example.jpeg " width="600">
     <br>
     figure 5: visual example of how the table will be visualed
 </p>
@@ -197,4 +175,4 @@ Chicago
 
 Murray, K., Müller, T., & Rudová, H. (2006, August). Modeling and solution of a complex university course timetabling problem. In International Conference on the Practice and Theory of Automated Timetabling (pp. 189-209). Springer, Berlin, Heidelberg.
 
-Willemen, R. J. (2002). School timetable construction : algorithms and complexity. Technische Universiteit Eindhoven. https://doi.org/10.6100/IR553569 
+Willemen, R. J. (2002). School timetable construction : algorithms and complexity. Technische Universiteit Eindhoven. https://doi.org/10.6100/IR553569
