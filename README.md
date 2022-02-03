@@ -35,7 +35,7 @@ Whilst being a difficult problem, the case offers some relaxation in the things 
 Within the context of this case we are given a clear method of analysing what would be considered a good solution, as this is something that is normally hard to measure. The case does this through applying points (known as minus points) for specific scenarios, with the aim that our solution should achieve the least amount of points possible. The scenarios in which we gain these points are:
 - 5 points for using the aformentioned evening slot
 - 1 point for each subject activity clash each student has
-- We want to minimise the amount of free time a student has between subjects, for each single empty slot that occurs between subjects per student, we will gain 1 point. If there are two empty slots for the student, we will gain 3 points. A gap of three empty slots between subjects is not allowed within this structure. Unfortunately, we were unable to eliminate gaps larger than 2 slots, these larger gaps were also given 3 points in our program.
+- We want to minimise the amount of free time a student has between subjects, for each single empty slot that occurs between subjects per student, we will gain 1 point. If there are two empty slots for the student, we will gain 3 points. A gap of three empty slots between subjects is not allowed within this structure. Unfortunately, we were unable to eliminate gaps larger than 2 slots, these larger gaps were also given 3 points in our program due to complications we encountered with the coding, and the time pressure in completing the project.
 
 This points system will act as a point of reference upon which we will compare and evaluate our algorithms. 
 
@@ -44,24 +44,18 @@ This points system will act as a point of reference upon which we will compare a
 
 #### Baseline
 
-Our baseline for this project is based on randomisation. To begin this process we first had to build a timetable which contained all the activities of all the subjects. So we had to calculate the minimum amount of total combination of lectures, workgroups, and tutorials for each specific activity. Based on this we are able to fill the entire week schedule, by simply putting the activities in the first slot available. This gave us a complete timetable. We then proceed to use the shuffling tool within python to create a randomisation of the activities and the time slots and days which the fit in. We would then compare the minus points to work out which timetable was the more optimal solution.
+The baseline for this project was to have a functioning timetable which contained all the activities of all the subjects. So we had to calculate the minimum amount of total combination of lectures, workgroups, and tutorials for each specific activity. Based on this we are able to fill the entire week schedule, by simply putting the activities in the first slot available. This gave us a complete timetable. 
 
-Using a for loop which we iterate over 100,000 times, we can calculate those points based on the specific timetable and how each student is slotted in. 
+This randomisation process however is done with constraints: it takes into account the room capacity and ensure that each activity is put in the room with the smallest capacity. On top of this, we aimed to use the night slots as little as possible. However, it may be in later stages that we find combinations where the night slot offers less minus points than without using it. 
 
-The current best solution we calculated was ***INSERT NEW SCORE*** minus points.
+#### Algorithm 1: Activity Swap
 
-***REPLACE IMAGE WITH NEW ALGORITHM RESULTS***
-<p align="center">
-    <img src="images/baseline_results.jpeg " width="500">
-    <br>
-    figure 1: results from the randomisation process
-</p>
+To improve on this initial baseline result, we used a hill climber algorithm, in which we aim to make small continious incremental changes to get a more optimised solution. 
 
-This randomisation process however is done with constraints: it takes into account the room capacity and ensure that each activity is put in the room with the smallest capacity. On top of this, we aimed to use the night slots as little as possible. However, it may be in later stages that we find combinations where the night slot offers less minus points than without using it. Finally due to complications we encountered with the coding, and the time pressure in completing the project we had to ignore certain aspects of the case. Specifically, within the requiremenets it was stated that more than three empty slots in between subjects would not be allowed. For creating a more streamlined code, we have decided to include this and give three points when there are gaps of 2 and higher.
 
-#### Hill Climber
 
-To improve on this initial baseline result, we used a hill climber algorithm, in which we aim to make small continious incremental changes to get a more optimised solution. This was achieved by swapping specific instances of that subject’s activity with an empty timetable slot. 
+
+This was achieved by swapping specific instances of that subject’s activity with an empty timetable slot. 
 
 We would compare the points calculated from this swap with the points before this change was implemented. If the number of mins points has decreased or stayed the same, we maintain this new change to the timetable, if not we revert to the previous timetable. We kept changes that did not change the score because this prevents the program from getting stuck in a sub-optimal solution. This is continued for the activity until none of the changes give any improvements to the number of points we have.
 
@@ -78,7 +72,22 @@ After ***N*** amount of changes our total points equated to ***MALUSPUNTEN***
 
 To further improve the algorithm, since swapping activities with empty slots offers no more improvements, it would make sense to take it one step at a time to not make it too complicated. 
 
-The next logical step was to begin swapping the activities with other activities, and to compare the minus points based on these changes in a similar way. Further we also did the same with students, also taking into account which specific activity group they are being placed in, and then moving them between these groups.
+The next logical step was to begin swapping the activities with other activities, and to compare the minus points based on these changes in a similar way. 
+
+#### Algorithm 2: Student Swap
+
+Further we also did the same with students, also taking into account which specific activity group they are being placed in, and then moving them between these groups.
+
+student swapping with empty slots
+
+and students swapping with other students
+
+<p align="center">
+    <img src="images/hillclimber_results.jpeg " width="500">
+    <br>
+    figure 2: results from the hill climber algorithm
+</p>
+
 
 #### Theoretical Optimum
 
@@ -100,39 +109,35 @@ reflection on our process
 
 #### Hardware
 
-- MENTION THE HARDWARE UPON WHICH THESE CALCULATIONS WERE DONE eg affects time / computing power
+This is the hardware used when making the calculations
+
+OS: Windows 10 64-bit
+<br>
+CPU: AMD Ryzen 5 3600 6-core processor
+<br>
+GPU: NVIDIA GeForce GTX 1660 SUPER
+<br>
+RAM: 16 gb
 
 #### Commands & instructions for navigating this project and gaining results
 
 python3 rooster.py
 
-#### Baseline
-
-time:
-<br/>
-moves: 100,000
-<br/>
-points:
-
-#### First Algorithm
-
-time:
-<br/>
-moves:
-<br/>
-points:
-
-#### Second Algorithm
-
-time:
-<br/>
-moves:
-<br/>
-points:
+|            |      Time     |  Moves  |  Points  |  
+|------------|:-------------:|--------:|----------:
+| Baseline   |               |         |          |  
+| Algorithm 1|               |         |          | 
+| Algorithm 2|     |         |          | 
 
 #### Visualisation
 
-produces a visual timetable with the timetable which allows for the least amount of maluspunten 
+Produces a visual timetable which is based on the list that is produced at the end of the algorithm with the calculated optimum. 
+
+<p align="center">
+    <img src="images/timetable_example.jpeg " width="600">
+    <br>
+    figure 3: visual example of how the table will be visualed
+</p>
 
 ## References
 
